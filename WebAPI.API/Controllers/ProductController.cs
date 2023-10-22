@@ -1,4 +1,5 @@
-﻿using DapperORM.Application.Features.Quries.GetAllProduct;
+﻿using DapperORM.Application.Features.Commands.CreateProduct;
+using DapperORM.Application.Features.Quries.GetAllProduct;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,17 @@ namespace WebAPI.API.Controllers
         public async Task<IActionResult> GetAll([FromQuery] GetAllProductQueryRequest request)
         {
             var result = await _mediator.Send(request);
+            return Ok(result);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPost]
+        public async Task<IActionResult> Create([FromQuery] CreateProductCommandRequest request)
+        {
+            var result=await _mediator.Send(request);
+            if(result.IsSuccess==false)
+                return BadRequest(result);
             return Ok(result);
         }
     }

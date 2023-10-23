@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.RemoveProduct
 {
-    internal class RemoveProductCommandRequest
+    public class RemoveProductCommandRequest
     {
     }
 }

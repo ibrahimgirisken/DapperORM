@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Quries.GetByIdProduct
 {
-    internal class GetByIdProductQueryHandler
+    public class GetByIdProductQueryHandler
     {
     }
 }

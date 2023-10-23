@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DapperORM.Application.Features.Commands.UpdateProduct
+namespace DapperORM.Application.Features.Queries.Product.GetEvent
 {
-    public class UpdateProductCommandHandler
+    public class GetProductQueryHandler
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.UpdateProduct
 {
-    internal class UpdateProductCommandRequest
+    public class UpdateProductCommandRequest
     {
     }
 }

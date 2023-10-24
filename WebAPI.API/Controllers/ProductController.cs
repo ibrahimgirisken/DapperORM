@@ -24,7 +24,7 @@ namespace WebAPI.API.Controllers
         [HttpGet(":Id")]
         public async Task<IActionResult> Get([FromQuery] GetProductQueryRequest request)
         {
-            var result=await _mediator.Send(request);
+            var result = await _mediator.Send(request);
             //if (result.IsSuccess)
             //    return BadRequest(result);
             return Ok(result);
@@ -43,8 +43,8 @@ namespace WebAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromQuery] CreateProductCommandRequest request)
         {
-            var result=await _mediator.Send(request);
-            if(result.IsSuccess==false)
+            var result = await _mediator.Send(request);
+            if (result.IsSuccess == false)
                 return BadRequest(result);
             return Ok(result);
         }
@@ -53,7 +53,7 @@ namespace WebAPI.API.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete([FromQuery] RemoveProductCommandRequest request)
         {
-            var result=await _mediator.Send(request);
+            var result = await _mediator.Send(request);
             //if(result.IsSuccess==false)
             //    return BadRequest(result);
             return Ok(result);
@@ -64,7 +64,7 @@ namespace WebAPI.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetById([FromQuery] GetByIdProductQueryRequest request)
         {
-            var result= await _mediator.Send(request);
+            var result = await _mediator.Send(request);
             return Ok(result);
         }
 
@@ -73,7 +73,7 @@ namespace WebAPI.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromQuery] UpdateProductCommandRequest request)
         {
-            var result=await _mediator.Send(request);
+            var result = await _mediator.Send(request);
             //if (result.IsSuccess == false)
             //    return BadRequest(result);
             return Ok(result);

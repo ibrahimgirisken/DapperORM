@@ -11,5 +11,8 @@ namespace DapperORM.Domain.Constants
         public const string Product_Added = "Ürün Eklendi!";
         public const string Product_Updated = "Ürün Güncellendi!";
         public const string Product_Deleted = "Ürün Silindi!";
+        public const string Category_Added = "Kategori Eklendi!";
+        public const string Category_Updated = "Kategori Güncellendi!";
+        public const string Category_Deleted = "Kategori Silindi!";
     }
 }

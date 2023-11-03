@@ -14,8 +14,8 @@ namespace DapperORM.Application.Validations.Common
         public static IRuleBuilderOptions<T, string> CheckProductName<T>(this IRuleBuilder<T, string> ruleBuilder) where T:Product {
             return ruleBuilder
                 .NotEmpty().WithMessage(ValidationMessages.Product_Name_Length_Error)
-                .MinimumLength(3).WithMessage(ValidationMessages.Product_Name_Length_Error)
-                .MaximumLength(70).WithMessage(ValidationMessages.Product_Name_Length_Error);
+                .MinimumLength(3).WithMessage(ValidationMessages.Product_Name_Min_Length_Error)
+                .MaximumLength(70).WithMessage(ValidationMessages.Product_Name_Max_Length_Error);
 
         }
     }

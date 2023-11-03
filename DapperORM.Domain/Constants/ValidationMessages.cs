@@ -9,6 +9,11 @@ namespace DapperORM.Domain.Constants
     public class ValidationMessages
     {
         //Product
-        public const string Product_Name_Length_Error = "Ürün ismi en az 3 ve en fazla 70 karakter olmalıdır!";
+        public const string Product_Name_Length_Error = "Ürün ismi zorunludur!";
+        public const string Product_Name_Min_Length_Error = "Ürün ismi en az 3karakter olmalıdır!";
+        public const string Product_Name_Max_Length_Error = "Ürün ismi en fazla 70 karakter olmalıdır!";
+        public const string Category_Name_Length_Error = "Kategori ismi zorunludur!";
+        public const string Category_Name_Min_Length_Error = "Kategori ismi en az 3karakter olmalıdır!";
+        public const string Category_Name_Max_Length_Error = "Kategori ismi en fazla 70 karakter olmalıdır!";
     }
 }

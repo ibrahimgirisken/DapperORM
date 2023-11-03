@@ -11,7 +11,7 @@ namespace DapperORM.Persistence.Repositories
 {
     public class DapperCategoryRepository : DapperGenericRepository<Category>,ICategoryRepository
     {
-        public DapperCategoryRepository(IDapperContext dapperContext, string tableName) : base(dapperContext, "Categories")
+        public DapperCategoryRepository(IDapperContext dapperContext):base(dapperContext, "Categories")
         {
         }
     }

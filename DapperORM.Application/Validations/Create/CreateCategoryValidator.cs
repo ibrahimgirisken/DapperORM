@@ -1,4 +1,5 @@
-﻿using DapperORM.Domain.Entities;
+﻿using DapperORM.Application.Validations.Common;
+using DapperORM.Domain.Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace DapperORM.Application.Validations.Create
     {
         public CreateCategoryValidator()
         {
-            
+            RuleFor(c => c.Name).CheckCategoryName();
         }
     }
 }

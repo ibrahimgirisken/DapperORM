@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DapperORM.Application.Features.Queries.Product.GetEvent
+namespace DapperORM.Application.Features.Queries.CategoryQueries.GetEvent
 {
-    public class GetProductQueryHandler
+    public class GetCategoryQueryRequest
     {
     }
 }

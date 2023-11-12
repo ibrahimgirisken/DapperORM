@@ -10,7 +10,7 @@ namespace DapperORM.Persistence.Repositories
     public abstract class DapperGenericRepository<T>:IGenericRepository<T> where T:BaseEntity
     {
         public IDapperContext _dapperContext;
-        private readonly string _tableName;
+        private string _tableName;
 
         protected DapperGenericRepository(IDapperContext dapperContext, string tableName)
         {
@@ -52,12 +52,13 @@ namespace DapperORM.Persistence.Repositories
 
         public T Get(int id)
         {
-            var query = $"select * from {_tableName} where Id=@Id";
+     
+            var query = $"select * from {_tableName} where Id = @Id ";
 
             using (var conn=_dapperContext.GetConnection())
             {
                 conn.Open();
-                return conn.QueryFirst<T>(query);
+                return conn.QueryFirst<T>(query,new {Id=id});
             }
         }
 

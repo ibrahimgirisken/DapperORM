@@ -1,5 +1,10 @@
 ﻿using AutoMapper;
+using DapperORM.Application.Features.Commands.CreateCategory;
 using DapperORM.Application.Features.Commands.CreateProduct;
+using DapperORM.Application.Features.Commands.RemoveCategory;
+using DapperORM.Application.Features.Commands.RemoveProduct;
+using DapperORM.Application.Features.Queries.CategoryQueries.GetByIdCategory;
+using DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct;
 using DapperORM.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,8 +20,13 @@ namespace DapperORM.Application.MappingConfiguration
         {
             //Command
             CreateMap<Product, CreateProductCommandRequest>().ReverseMap();
+            CreateMap<Category, CreateCategoryCommandRequest>().ReverseMap();
+            CreateMap<Product, RemoveProductCommandRequest>().ReverseMap();
+            CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
 
             //Queries
+            CreateMap<Product, GetByIdProductQueryRequest>().ReverseMap();
+            CreateMap<Category, GetByIdCategoryQueryRequest>().ReverseMap();
         }
     }
 }

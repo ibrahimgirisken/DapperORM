@@ -16,7 +16,7 @@ builder.Services.AddCors(option =>
 option.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()));
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipelineAddApplicationDependencies
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

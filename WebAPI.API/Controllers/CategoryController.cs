@@ -1,10 +1,9 @@
 ﻿using DapperORM.Application.Features.Commands.CreateCategory;
+using DapperORM.Application.Features.Commands.RemoveCategory;
 using DapperORM.Application.Features.Commands.UpdateCategory;
-using DapperORM.Application.Features.Queries.GetAllCategory;
-using DapperORM.Application.Features.Queries.GetByIdCategory;
-using DapperORM.Application.Features.Queries.GetEvent;
+using DapperORM.Application.Features.Queries.CategoryQueries.GetAllCategory;
+using DapperORM.Application.Features.Queries.CategoryQueries.GetByIdCategory;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.API.Controllers
@@ -21,11 +20,11 @@ namespace WebAPI.API.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet(":id")]
-        public async Task<IActionResult> Get([FromQuery] GetCategoryQueryRequest request)
+        public async Task<IActionResult> Get([FromQuery] GetByIdCategoryQueryRequest request)
         {
-            var result=await _mediator.Send(request);
+            var result = await _mediator.Send(request);
             return Ok(result);
         }
 
@@ -38,7 +37,7 @@ namespace WebAPI.API.Controllers
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         public async Task<IActionResult> Create([FromQuery] CreateCategoryCommandRequest request)
         {
@@ -48,17 +47,18 @@ namespace WebAPI.API.Controllers
             return Ok(result);
         }
 
+
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet]
-        public async Task<IActionResult> GetById([FromQuery] GetByIdCategoryQueryRequest request)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromQuery] RemoveCategoryCommandRequest request)
         {
-            var result=await _mediator.Send(request);
+            var result = await _mediator.Send(request);
             return Ok(result);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut]
         public async Task<IActionResult> Update([FromQuery] UpdateCategoryCommandRequest request)
         {

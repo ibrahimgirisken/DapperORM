@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DapperORM.Domain\DapperORM.Domain.csproj" />
+    <Folder Include="Validations\Delete\" />
+    <Folder Include="Validations\Update\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Validations\Delete\" />
-    <Folder Include="Validations\Update\" />
+    <ProjectReference Include="..\DapperORM.Domain\DapperORM.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DapperORM.Application.Features.Commands.RemoveCategory
+namespace DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct
 {
-    public class RemoveCategoryCommandRequest:IRequest<IResult>
+    public class RemoveProductCommandRequest:IRequest<IResult>
     {
         public int Id { get; set; }
     }

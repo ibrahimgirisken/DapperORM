@@ -6,7 +6,7 @@ using DapperORM.Domain.Constants;
 using DapperORM.Domain.Entities;
 using MediatR;
 
-namespace DapperORM.Application.Features.Commands.CreateCategory
+namespace DapperORM.Application.Features.Commands.CategoryCommands.CreateCategory
 {
     public class CreateCategoryCommandHandler:IRequestHandler<CreateCategoryCommandRequest,IResult>
     {

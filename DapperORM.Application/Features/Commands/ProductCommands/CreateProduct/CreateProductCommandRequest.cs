@@ -6,11 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DapperORM.Application.Features.Commands.CreateCategory
+namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
 {
-    public class CreateCategoryCommandRequest:IRequest<IResult>
+    public class CreateProductCommandRequest:IRequest<IResult>
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public int CategoryId { get; set; }
+
     }
 }

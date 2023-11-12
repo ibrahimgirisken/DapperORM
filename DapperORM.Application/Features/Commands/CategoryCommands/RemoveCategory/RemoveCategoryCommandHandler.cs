@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DapperORM.Application.Features.Commands.RemoveCategory
+namespace DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategory
 {
     public class RemoveCategoryCommandHandler : IRequestHandler<RemoveCategoryCommandRequest, IResult>
     {

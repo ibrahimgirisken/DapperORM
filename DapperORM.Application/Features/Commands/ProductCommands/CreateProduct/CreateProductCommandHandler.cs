@@ -6,7 +6,7 @@ using DapperORM.Domain.Constants;
 using DapperORM.Domain.Entities;
 using MediatR;
 
-namespace DapperORM.Application.Features.Commands.CreateProduct
+namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
 {
     public class CreateProductCommandHandler:IRequestHandler<CreateProductCommandRequest,IResult>
     {

@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
-using DapperORM.Application.Features.Commands.CreateCategory;
-using DapperORM.Application.Features.Commands.CreateProduct;
-using DapperORM.Application.Features.Commands.RemoveCategory;
-using DapperORM.Application.Features.Commands.RemoveProduct;
+using DapperORM.Application.Features.Commands.CategoryCommands.CreateCategory;
+using DapperORM.Application.Features.Commands.ProductCommands.CreateProduct;
+using DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategory;
+using DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct;
+using DapperORM.Application.Features.Commands.CategoryCommands.UpdateCategory;
+using DapperORM.Application.Features.Commands.ProductCommands.UpdateProduct;
+using DapperORM.Application.Features.Queries.CategoryQueries.GetAllCategory;
 using DapperORM.Application.Features.Queries.CategoryQueries.GetByIdCategory;
+using DapperORM.Application.Features.Queries.ProductQueries.GetAllProduct;
 using DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct;
 using DapperORM.Domain.Entities;
 using System;
@@ -23,10 +27,14 @@ namespace DapperORM.Application.MappingConfiguration
             CreateMap<Category, CreateCategoryCommandRequest>().ReverseMap();
             CreateMap<Product, RemoveProductCommandRequest>().ReverseMap();
             CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
+            CreateMap<Product, UpdateProductCommandRequest>().ReverseMap();
+            CreateMap<Category, UpdateCategoryCommandRequest>().ReverseMap();
 
             //Queries
-            CreateMap<Product, GetByIdProductQueryRequest>().ReverseMap();
+            CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();
             CreateMap<Category, GetByIdCategoryQueryRequest>().ReverseMap();
+            CreateMap<Product, GetByIdProductQueryRequest>().ReverseMap();
+            CreateMap<Category, GetAllCategoryQueryRequest>().ReverseMap();
         }
     }
 }

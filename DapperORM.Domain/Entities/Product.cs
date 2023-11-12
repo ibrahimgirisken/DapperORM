@@ -11,5 +11,8 @@ namespace DapperORM.Domain.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
+
+        //Foreign Key Property
+        public int CategoryId { get; set; }
     }
 }

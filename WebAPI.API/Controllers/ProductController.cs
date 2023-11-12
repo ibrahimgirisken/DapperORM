@@ -1,8 +1,9 @@
-﻿using DapperORM.Application.Features.Commands.CreateProduct;
-using DapperORM.Application.Features.Commands.RemoveProduct;
-using DapperORM.Application.Features.Commands.UpdateProduct;
+﻿using DapperORM.Application.Features.Commands.ProductCommands.CreateProduct;
+using DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct;
+using DapperORM.Application.Features.Commands.ProductCommands.UpdateProduct;
 using DapperORM.Application.Features.Queries.ProductQueries.GetAllProduct;
 using DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct;
+using DapperORM.Application.Features.Queries.ProductQueries.GetEvent;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,15 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpGet(":id")]
         public async Task<IActionResult> Get([FromQuery] GetByIdProductQueryRequest request)
+        {
+            var result = await _mediator.Send(request);
+            return Ok(result);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpGet("get-all-by-category")]
+        public async Task<IActionResult> GetProductByCategory([FromQuery] GetProductByCategoryQueryRequest request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);

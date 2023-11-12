@@ -1,6 +1,6 @@
-﻿using DapperORM.Application.Features.Commands.CreateCategory;
-using DapperORM.Application.Features.Commands.RemoveCategory;
-using DapperORM.Application.Features.Commands.UpdateCategory;
+﻿using DapperORM.Application.Features.Commands.CategoryCommands.CreateCategory;
+using DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategory;
+using DapperORM.Application.Features.Commands.CategoryCommands.UpdateCategory;
 using DapperORM.Application.Features.Queries.CategoryQueries.GetAllCategory;
 using DapperORM.Application.Features.Queries.CategoryQueries.GetByIdCategory;
 using MediatR;

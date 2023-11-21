@@ -5,8 +5,9 @@ using DapperORM.Application.Features.Queries.ProductQueries.GetAllProduct;
 using DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct;
 using DapperORM.Application.Features.Queries.ProductQueries.GetEvent;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
+using WebAPI.API.Languages;
 
 namespace WebAPI.API.Controllers
 {
@@ -15,11 +16,22 @@ namespace WebAPI.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public ProductController(IMediator mediator)
+
+        private readonly IStringLocalizer<Lang> _stringLocalizer;
+        public ProductController(IMediator mediator, IStringLocalizer<Lang> stringLocalizer)
         {
             _mediator = mediator;
+            _stringLocalizer = stringLocalizer;
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpGet("get-lang")]
+        public async Task<IActionResult> GetLangData()
+        {
+            var result = _stringLocalizer["Home"];
+            return Ok(result);
+        }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

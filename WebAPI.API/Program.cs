@@ -1,3 +1,5 @@
+using AspNetCore.Identity.Dapper;
+using AspNetCore.Identity.Dapper.Models;
 using DapperORM.Application;
 using DapperORM.Persistence;
 using System.Globalization;
@@ -15,6 +17,26 @@ builder.Services.AddPersistenceDependencies();
 
 builder.Services.AddControllersWithViews()
                 .AddViewLocalization();
+
+//Identity
+
+builder.Services.AddIdentityCore<ApplicationUser>(options =>
+{
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;
+
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = true;
+})
+    .AddRoles<ApplicationRole>()
+    .AddDapperStores(options =>
+    {
+        options.ConnectionString = "my connectionString";
+        options.DbSchema = "my schema";
+    });
 
 builder.Services.AddLocalization(options =>
 {
@@ -35,6 +57,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = cultures;
     options.SupportedUICultures = cultures;
 });
+
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

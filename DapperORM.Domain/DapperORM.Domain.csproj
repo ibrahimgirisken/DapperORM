@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="VeryGood.AspNetCore.Identity.Dapper" Version="5.0.1.1" />
+    <PackageReference Include="VeryGood.AspNetCore.Identity.DatabaseScripts.DbUp" Version="5.0.1" />
+  </ItemGroup>
+
 </Project>

@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Commands\AppUserCommands\LoginUser\" />
     <Folder Include="Validations\Delete\" />
     <Folder Include="Validations\Update\" />
   </ItemGroup>

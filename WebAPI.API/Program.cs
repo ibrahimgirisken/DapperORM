@@ -1,6 +1,7 @@
 using AspNetCore.Identity.Dapper;
 using AspNetCore.Identity.Dapper.Models;
 using DapperORM.Application;
+using DapperORM.Infrastructure;
 using DapperORM.Persistence;
 using System.Globalization;
 using WebAPI.API.Middlewares;
@@ -12,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddApplicationDependencies();
 builder.Services.AddPersistenceDependencies();
+builder.Services.AddInfrastructureDependencies();
 
 //Language
 

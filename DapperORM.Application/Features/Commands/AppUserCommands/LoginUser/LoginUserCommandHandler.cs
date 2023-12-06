@@ -1,4 +1,5 @@
-﻿using DapperORM.Application.Abstractions;
+﻿using System;
+using DapperORM.Application.Abstractions;
 using DapperORM.Application.DTOs;
 using DapperORM.Application.Exceptions;
 using DapperORM.Domain.Common.Result;
@@ -6,11 +7,6 @@ using DapperORM.Domain.Entities;
 using DapperORM.Domain.Identity.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
 {

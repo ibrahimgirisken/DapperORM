@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct
 {
-    public class RemoveProductCommandRequest:IRequest<IResult>
+    public class RemoveProductCommandRequest:IRequest<IDataResult>
     {
         public int Id { get; set; }
     }

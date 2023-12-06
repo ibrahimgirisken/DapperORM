@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategory
 {
-    public class RemoveCategoryCommandRequest:IRequest<IResult>
+    public class RemoveCategoryCommandRequest:IRequest<IDataResult>
     {
         public int Id { get; set; }
     }

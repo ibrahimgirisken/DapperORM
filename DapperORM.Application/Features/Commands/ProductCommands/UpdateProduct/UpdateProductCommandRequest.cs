@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.ProductCommands.UpdateProduct
 {
-    public class UpdateProductCommandRequest:IRequest<IResult>
+    public class UpdateProductCommandRequest:IRequest<IDataResult>
     {
         public int Id { get; set; }
         public string Name { get; set; }

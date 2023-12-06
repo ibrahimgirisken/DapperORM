@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.CategoryCommands.UpdateCategory
 {
-    public class UpdateCategoryCommandHandler:IRequestHandler<UpdateCategoryCommandRequest,IResult>
+    public class UpdateCategoryCommandHandler:IRequestHandler<UpdateCategoryCommandRequest,IDataResult>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
@@ -23,11 +23,11 @@ namespace DapperORM.Application.Features.Commands.CategoryCommands.UpdateCategor
             _categoryRepository = categoryRepository;
         }
 
-        public Task<IResult> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
+        public Task<IDataResult> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             Category category = _mapper.Map<Category>(request);
             _categoryRepository.Update(category);
-            return Task.FromResult<IResult>(new SuccessResult(ResultMessages.Category_Updated));
+            return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Category_Updated));
         }
     }
 }

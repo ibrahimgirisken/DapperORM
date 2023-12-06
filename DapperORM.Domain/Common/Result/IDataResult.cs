@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Domain.Common.Result
 {
-    public interface IDataResult<T>:IResult
+    public interface IDataResult<T>:IDataResult
     {
         public T Data { get; }
     }

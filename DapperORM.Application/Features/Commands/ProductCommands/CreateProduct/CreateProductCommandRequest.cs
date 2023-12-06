@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
 {
-    public class CreateProductCommandRequest:IRequest<IResult>
+    public class CreateProductCommandRequest:IRequest<IDataResult>
     {
         public string Name { get; set; }
         public string Description { get; set; }

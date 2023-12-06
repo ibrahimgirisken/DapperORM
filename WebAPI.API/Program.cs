@@ -3,7 +3,10 @@ using AspNetCore.Identity.Dapper.Models;
 using DapperORM.Application;
 using DapperORM.Infrastructure;
 using DapperORM.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
+using System.Text;
 using WebAPI.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,23 +20,20 @@ builder.Services.AddInfrastructureDependencies();
 
 //Identity
 
-builder.Services.AddIdentityCore<ApplicationUser>(options =>
+//Jwt
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer("Admin", options =>
 {
-    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    options.User.RequireUniqueEmail = true;
-
-    options.Password.RequireDigit = true;
-    options.Password.RequiredLength = 8;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = true;
-})
-    .AddRoles<ApplicationRole>()
-    .AddDapperStores(options =>
+    options.TokenValidationParameters = new()
     {
-        options.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        options.DbSchema = "my schema";
-    });
+        ValidateAudience = true, //Oluşturulacak token değerini kimlerin/hangi orijinlerin/sitelerin belirlediği değerlerdir.
+        ValidateIssuer = true, // Oluşturulacak token değerinin kimin dağıttığını ifade edeceğimiz alandır. www.bisey.com
+        ValidateLifetime = true,// Oluşturulacak token değerinin süresini kontrol eder
+        ValidateIssuerSigningKey = true, //Üretilecek token değerinin uygulamamıza ait bir değer olduğunu ifade eden security key değeri doğrulamasıdır.
+        ValidAudience = builder.Configuration["Token:Audience"],
+        ValidIssuer = builder.Configuration["Token:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"]))
+    };
+});
 
 
 builder.Services.AddLocalization(options =>

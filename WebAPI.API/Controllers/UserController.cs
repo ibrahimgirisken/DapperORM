@@ -1,4 +1,5 @@
 ﻿using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
+using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,11 @@ namespace WebAPI.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IMediator Mediator;
+        private readonly IMediator _mediator;
 
         public UserController(IMediator mediator)
         {
-            Mediator = mediator;
+            _mediator = mediator;
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -21,7 +22,7 @@ namespace WebAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromQuery] CreateUserCommandRequest request)
         {
-            var result=await Mediator.Send(request);
+            var result=await _mediator.Send(request);
             if (result.IsSuccess == false)
                 return BadRequest(result);
                 return Ok(result);
@@ -34,5 +35,13 @@ namespace WebAPI.API.Controllers
         //{
 
         //}
+
+        public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
+        {
+            var result = await _mediator.Send(loginUserCommandRequest);
+            if(result.IsSuccess == false)
+                return BadRequest(result);
+            return Ok(result);
+        }
     }
 }

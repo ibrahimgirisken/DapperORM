@@ -8,7 +8,7 @@ using MediatR;
 
 namespace DapperORM.Application.Features.Commands.CategoryCommands.CreateCategory
 {
-    public class CreateCategoryCommandHandler:IRequestHandler<CreateCategoryCommandRequest,IResult>
+    public class CreateCategoryCommandHandler:IRequestHandler<CreateCategoryCommandRequest,IDataResult>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
@@ -21,16 +21,16 @@ namespace DapperORM.Application.Features.Commands.CategoryCommands.CreateCategor
             _createCategoryValidator = createCategoryValidator;
         }
 
-        public Task<IResult> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
+        public Task<IDataResult> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             Category category=_mapper.Map<Category>(request);
             var result=_createCategoryValidator.Validate(category);
             if(result.Errors.Any())
             {
-                return Task.FromResult<IResult>(new ErrorResult(result.Errors.First().ErrorMessage));
+                return Task.FromResult<IDataResult>(new ErrorResult(result.Errors.First().ErrorMessage));
             }
             _categoryRepository.Add(category);
-            return Task.FromResult<IResult>(new SuccessResult(ResultMessages.Category_Added));
+            return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Category_Added));
         }
     }
 }

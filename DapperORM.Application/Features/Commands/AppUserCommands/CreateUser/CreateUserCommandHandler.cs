@@ -9,7 +9,7 @@ using MediatR;
 
 namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
 {
-    public class CreateUserCommandHandler:IRequestHandler<CreateUserCommandRequest,IResult>
+    public class CreateUserCommandHandler:IRequestHandler<CreateUserCommandRequest,IDataResult>
     {
         private readonly IMapper _mapper;
         private readonly CreateUserValidator _validator;
@@ -22,17 +22,17 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
             _userRepository = userRepository;
         }
 
-        public Task<IResult> Handle(CreateUserCommandRequest request,CancellationToken cancellationToken)
+        public Task<IDataResult> Handle(CreateUserCommandRequest request,CancellationToken cancellationToken)
         {
             AppUser user = _mapper.Map<AppUser>(request);
             var result = _validator.Validate(user);
 
             if(result.Errors.Any())
             {
-                return Task.FromResult<IResult>(new ErrorResult(result.Errors.First().ErrorMessage));
+                return Task.FromResult<IDataResult>(new ErrorResult(result.Errors.First().ErrorMessage));
             }
             _userRepository.Add(user);
-            return Task.FromResult<IResult>(new SuccessResult(ResultMessages.User_Added));
+            return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.User_Added));
         }
     }
 

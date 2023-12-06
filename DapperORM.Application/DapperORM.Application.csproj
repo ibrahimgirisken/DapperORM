@@ -18,7 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\AppUserCommands\LoginUser\" />
+    <Folder Include="Features\Commands\AppUserCommands\UpdateUser\" />
+    <Folder Include="Features\Commands\AppUserCommands\RemoveUser\" />
+    <Folder Include="Features\Queries\UserQueries\GetAllUser\" />
+    <Folder Include="Features\Queries\UserQueries\GetByIdUser\" />
+    <Folder Include="Features\Queries\UserQueries\GetEvent\" />
     <Folder Include="Validations\Delete\" />
     <Folder Include="Validations\Update\" />
   </ItemGroup>

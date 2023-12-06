@@ -8,7 +8,7 @@ using MediatR;
 
 namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
 {
-    public class CreateProductCommandHandler:IRequestHandler<CreateProductCommandRequest,IResult>
+    public class CreateProductCommandHandler:IRequestHandler<CreateProductCommandRequest,IDataResult>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -20,16 +20,16 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
             _createProductValidator = createProductValidator;
         }
 
-        public Task<IResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = _mapper.Map<Product>(request);
             var result = _createProductValidator.Validate(product);
             if (result.Errors.Any())
             {
-                return Task.FromResult<IResult>(new ErrorResult(result.Errors.First().ErrorMessage));
+                return Task.FromResult<IDataResult>(new ErrorResult(result.Errors.First().ErrorMessage));
             }
             _productRepository.Add(product);
-            return Task.FromResult<IResult>(new SuccessResult(ResultMessages.Product_Added));
+            return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added));
         }
     }
 }

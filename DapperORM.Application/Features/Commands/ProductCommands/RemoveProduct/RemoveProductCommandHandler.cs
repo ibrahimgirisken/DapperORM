@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct
 {
-    public class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommandRequest, IResult>
+    public class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommandRequest, IDataResult>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -23,11 +23,11 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct
             _mapper = mapper;
         }
 
-        public Task<IResult> Handle(RemoveProductCommandRequest request, CancellationToken cancellationToken)
+        public Task<IDataResult> Handle(RemoveProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = _mapper.Map<Product>(request);
             _productRepository.Delete(product);
-            return Task.FromResult<IResult>(new SuccessResult(ResultMessages.Product_Deleted));
+            return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Deleted));
         }
     }
 }

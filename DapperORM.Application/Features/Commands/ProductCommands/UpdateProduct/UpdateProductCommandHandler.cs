@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.ProductCommands.UpdateProduct
 {
-    public class UpdateProductCommandHandler:IRequestHandler<UpdateProductCommandRequest,IResult>
+    public class UpdateProductCommandHandler:IRequestHandler<UpdateProductCommandRequest,IDataResult>
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
@@ -23,11 +23,11 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.UpdateProduct
             _productRepository = productRepository;
         }
 
-        public Task<IResult> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
+        public Task<IDataResult> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
            Product product=_mapper.Map<Product>(request);
             _productRepository.Update(product);
-            return Task.FromResult<IResult>(new SuccessResult(ResultMessages.Product_Updated));
+            return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Updated));
         }
     }
 }

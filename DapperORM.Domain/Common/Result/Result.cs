@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Domain.Common.Result
 {
-    public class Result : IResult
+    public class Result : IDataResult
     {
         public Result(bool success,string Message):this(success)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.CategoryCommands.CreateCategory
 {
-    public class CreateCategoryCommandRequest:IRequest<IResult>
+    public class CreateCategoryCommandRequest:IRequest<IDataResult>
     {
         public string Name { get; set; }
         public string Description { get; set; }

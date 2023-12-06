@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategory
 {
-    public class RemoveCategoryCommandHandler : IRequestHandler<RemoveCategoryCommandRequest, IResult>
+    public class RemoveCategoryCommandHandler : IRequestHandler<RemoveCategoryCommandRequest, IDataResult>
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
@@ -25,11 +25,11 @@ namespace DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategor
 
 
 
-        public Task<IResult> Handle(RemoveCategoryCommandRequest request, CancellationToken cancellationToken)
+        public Task<IDataResult> Handle(RemoveCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             Category category = _mapper.Map<Category>(request);
             _categoryRepository.Delete(category);
-            return Task.FromResult<IResult>(new SuccessResult(ResultMessages.Category_Deleted));
+            return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Category_Deleted));
         }
     }
 }

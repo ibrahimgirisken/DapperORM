@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Domain.Common.Result
 {
-    public class ErrorDataReuslt<T>:DataResult<T>
+    public class ErrorDataResult<T>:DataResult<T>
     {
-        public ErrorDataReuslt(T data,string message):base(data,false,message)
+        public ErrorDataResult(T data,string message):base(data,false,message)
         {
 
         }
-        public ErrorDataReuslt(T data):base(data,false)
+        public ErrorDataResult(T data):base(data,false)
         {
 
         }

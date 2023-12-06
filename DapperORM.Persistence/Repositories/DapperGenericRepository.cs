@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace DapperORM.Persistence.Repositories
 {
-    public abstract class DapperGenericRepository<T>:IGenericRepository<T> where T:BaseEntity
+    public abstract class DapperGenericRepository<T>:IGenericRepository<T> where T:IBaseEntity
     {
         public IDapperContext _dapperContext;
         private string _tableName;

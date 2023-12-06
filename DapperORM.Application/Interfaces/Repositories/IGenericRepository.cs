@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Interfaces.Repositories
 {
-    public interface IGenericRepository<T> where T : BaseEntity
+    public interface IGenericRepository<T> where T : IBaseEntity
     {
         T Get(int id);
         void Add(T entity);

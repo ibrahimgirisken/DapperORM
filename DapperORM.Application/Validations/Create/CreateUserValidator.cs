@@ -1,4 +1,4 @@
-﻿using DapperORM.Domain.Entities.Identity;
+﻿using DapperORM.Domain.Identity.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,11 @@ namespace DapperORM.Application.Validations.Create
     {
         public CreateUserValidator()
         {
-            RuleFor(u=>u.NameSurname).NotEmpty();
+            RuleFor(u=>u.UserName).NotEmpty();
+            RuleFor(u => u.PasswordHash).NotEmpty();
+            RuleFor(u => u.PhoneNumber).NotEmpty();
+            RuleFor(u => u.Email).NotEmpty();
+
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using DapperORM.Application.Interfaces.Repositories;
 using DapperORM.Application.Validations.Create;
 using DapperORM.Domain.Common.Result;
 using DapperORM.Domain.Constants;
-using DapperORM.Domain.Entities.Identity;
+using DapperORM.Domain.Identity.Models;
 using MediatR;
 
 
@@ -12,11 +13,13 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
     {
         private readonly IMapper _mapper;
         private readonly CreateUserValidator _validator;
+        private readonly IUserRepository _userRepository;
 
-        public CreateUserCommandHandler(IMapper mapper, CreateUserValidator validator)
+        public CreateUserCommandHandler(IMapper mapper, CreateUserValidator validator, IUserRepository userRepository)
         {
             _mapper = mapper;
             _validator = validator;
+            _userRepository = userRepository;
         }
 
         public Task<IResult> Handle(CreateUserCommandRequest request,CancellationToken cancellationToken)
@@ -28,6 +31,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
             {
                 return Task.FromResult<IResult>(new ErrorResult(result.Errors.First().ErrorMessage));
             }
+            _userRepository.Add(user);
             return Task.FromResult<IResult>(new SuccessResult(ResultMessages.User_Added));
         }
     }

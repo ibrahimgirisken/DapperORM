@@ -1,4 +1,4 @@
-using AspNetCore.Identity.Dapper;
+﻿using AspNetCore.Identity.Dapper;
 using AspNetCore.Identity.Dapper.Models;
 using DapperORM.Application;
 using DapperORM.Infrastructure;
@@ -14,11 +14,6 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationDependencies();
 builder.Services.AddPersistenceDependencies();
 builder.Services.AddInfrastructureDependencies();
-
-//Language
-
-builder.Services.AddControllersWithViews()
-                .AddViewLocalization();
 
 //Identity
 
@@ -36,9 +31,10 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
     .AddRoles<ApplicationRole>()
     .AddDapperStores(options =>
     {
-        options.ConnectionString = "my connectionString";
+        options.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         options.DbSchema = "my schema";
     });
+
 
 builder.Services.AddLocalization(options =>
 {
@@ -65,6 +61,9 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
 builder.Services.AddCors(option =>
 option.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()));
 
@@ -82,6 +81,8 @@ app.UseRequestLocalization();
 app.UseRequestLocalizationCookies();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

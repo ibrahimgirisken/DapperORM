@@ -11,5 +11,6 @@ namespace DapperORM.Application.Interfaces.DapperContext
     {
         public SqlConnection GetConnection();
         public void Execute(Action<SqlConnection> @event);
+
     }
 }

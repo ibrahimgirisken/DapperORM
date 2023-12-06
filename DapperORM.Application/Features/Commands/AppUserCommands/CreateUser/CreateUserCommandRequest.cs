@@ -10,9 +10,9 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
 {
     public class CreateUserCommandRequest:IRequest<IResult>
     {
-        public string NameSurname { get; set; }
+        public string UserName { get; set; }
+        public string PasswordHash { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
         public string PhoneNumber { get; set; }
     }
 }

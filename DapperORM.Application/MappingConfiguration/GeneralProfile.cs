@@ -15,6 +15,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DapperORM.Domain.Identity.Models;
+using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
 
 namespace DapperORM.Application.MappingConfiguration
 {
@@ -29,12 +31,15 @@ namespace DapperORM.Application.MappingConfiguration
             CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
             CreateMap<Product, UpdateProductCommandRequest>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommandRequest>().ReverseMap();
+            CreateMap<AppUser, CreateUserCommandRequest>().ReverseMap();
+
 
             //Queries
             CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();
             CreateMap<Category, GetByIdCategoryQueryRequest>().ReverseMap();
             CreateMap<Product, GetByIdProductQueryRequest>().ReverseMap();
             CreateMap<Category, GetAllCategoryQueryRequest>().ReverseMap();
+ 
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
 using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.API.Controllers
@@ -29,10 +28,10 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Login([FromQuery] LoginUserCommandRequest request)
+        public async Task<IActionResult> Login(LoginUserCommandRequest request)
         {
-           LoginUserCommandResponse result = await _mediator.Send(request);
-            return Ok(result);
+           LoginUserCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }

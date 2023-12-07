@@ -29,7 +29,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
                 user = await _userManager.FindByEmailAsync(request.UserNameOrEmail);
 
             if (user == null)
-                throw new NotFoundUserException();
+                throw new NotFoundUserException("Kullanıcı veya şifre hatalı!");
 
             SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             if (result.Succeeded)//Authentication başarılı !

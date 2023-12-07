@@ -64,9 +64,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+var app = builder.Build();
 
 builder.Services.AddScoped<RequestLocalizationCookiesMiddleware>();
-var app = builder.Build();
 
 // Configure the HTTP request pipelineAddApplicationDependencies
 if (app.Environment.IsDevelopment())

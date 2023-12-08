@@ -10,6 +10,7 @@ namespace DapperORM.Application.Interfaces.Repositories
     public interface IGenericRepository<T> where T : IBaseEntity
     {
         T Get(int id);
+        T GetByColumnName(string columnName,string columnValue);
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);

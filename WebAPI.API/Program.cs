@@ -47,26 +47,26 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 //Jwt
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer("Admin", options =>
-{
-    options.TokenValidationParameters = new()
-    {
-        ValidateAudience = true, //Oluşturulacak token değerini kimlerin/hangi orijinlerin/sitelerin belirlediği değerlerdir.
-        ValidateIssuer = true, // Oluşturulacak token değerinin kimin dağıttığını ifade edeceğimiz alandır. www.bisey.com
-        ValidateLifetime = true,// Oluşturulacak token değerinin süresini kontrol eder
-        ValidateIssuerSigningKey = true, //Üretilecek token değerinin uygulamamıza ait bir değer olduğunu ifade eden security key değeri doğrulamasıdır.
-        ValidAudience = builder.Configuration["Token:Audience"],
-        ValidIssuer = builder.Configuration["Token:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"]))
-    };
-});
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer("Admin", options =>
+//{
+//    options.TokenValidationParameters = new()
+//    {
+//        ValidateAudience = true, //Oluşturulacak token değerini kimlerin/hangi orijinlerin/sitelerin belirlediği değerlerdir.
+//        ValidateIssuer = true, // Oluşturulacak token değerinin kimin dağıttığını ifade edeceğimiz alandır. www.bisey.com
+//        ValidateLifetime = true,// Oluşturulacak token değerinin süresini kontrol eder
+//        ValidateIssuerSigningKey = true, //Üretilecek token değerinin uygulamamıza ait bir değer olduğunu ifade eden security key değeri doğrulamasıdır.
+//        ValidAudience = builder.Configuration["Token:Audience"],
+//        ValidIssuer = builder.Configuration["Token:Issuer"],
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"]))
+//    };
+//});
 
+builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<RequestLocalizationCookiesMiddleware>();
 var app = builder.Build();
 
-builder.Services.AddScoped<RequestLocalizationCookiesMiddleware>();
 
 // Configure the HTTP request pipelineAddApplicationDependencies
 if (app.Environment.IsDevelopment())

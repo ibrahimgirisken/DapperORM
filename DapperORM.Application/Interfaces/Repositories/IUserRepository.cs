@@ -10,5 +10,8 @@ namespace DapperORM.Application.Interfaces.Repositories
 {
     public interface IUserRepository : IGenericRepository<AppUser>
     {
+        Task<AppUser> FindByNameAsync(string UserNameOrEmail);
+
+        Task<Boolean> CheckPasswordSignInAsync(AppUser user);
     }
 }

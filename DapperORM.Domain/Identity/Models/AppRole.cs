@@ -5,8 +5,12 @@ using DapperORM.Domain.Common;
 
 namespace DapperORM.Domain.Identity.Models
 {
-    public class AppRole : IdentityRole, IBaseEntity
+    public class AppRole :IBaseEntity
     {
-        internal List<Claim> Claims { get; set; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string NormalizedName { get; set; }
     }
 }

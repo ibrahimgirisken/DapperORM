@@ -61,6 +61,16 @@ namespace DapperORM.Persistence.Repositories
                 return conn.QueryFirst<T>(query,new {Id=id});
             }
         }
+        public T GetByColumnName(string columnName,string columnValue)
+        {
+            var query = $"select * from {_tableName} where {columnName} = @columnValue";
+
+            using (var conn = _dapperContext.GetConnection())
+            {
+                conn.Open();
+                return conn.QueryFirst<T>(query, new { columnName = columnValue });
+            }
+        }
 
         public List<T> GetAll()
         {
@@ -84,5 +94,6 @@ namespace DapperORM.Persistence.Repositories
                 conn.Execute(query, entity);
             });
         }
+
     }
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Identity.DapperOrm" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
@@ -21,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Abstractions\Identity\" />
     <Folder Include="Features\Commands\AppUserCommands\UpdateUser\" />
     <Folder Include="Features\Commands\AppUserCommands\RemoveUser\" />
     <Folder Include="Features\Queries\UserQueries\GetAllUser\" />

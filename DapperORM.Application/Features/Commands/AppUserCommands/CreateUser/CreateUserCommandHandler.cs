@@ -24,7 +24,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
 
         public Task<IDataResult> Handle(CreateUserCommandRequest request,CancellationToken cancellationToken)
         {
-            AppUser user = _mapper.Map<AppUser>(request);
+            ErrorViewModel user = _mapper.Map<ErrorViewModel>(request);
             var result = _validator.Validate(user);
 
             if(result.Errors.Any())

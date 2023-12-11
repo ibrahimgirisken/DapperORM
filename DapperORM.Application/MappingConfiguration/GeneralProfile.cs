@@ -32,9 +32,6 @@ namespace DapperORM.Application.MappingConfiguration
             CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
             CreateMap<Product, UpdateProductCommandRequest>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommandRequest>().ReverseMap();
-            CreateMap<AppUser, CreateUserCommandRequest>().ReverseMap();
-            CreateMap<AppUser, LoginUserCommandRequest>().ReverseMap();
-
 
             //Queries
             CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();

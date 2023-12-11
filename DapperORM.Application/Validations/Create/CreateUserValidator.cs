@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Validations.Create
 {
-    public class CreateUserValidator:AbstractValidator<AppUser>
+    public class CreateUserValidator:AbstractValidator<ErrorViewModel>
     {
         public CreateUserValidator()
         {
-            RuleFor(u=>u.UserName).NotEmpty();
-            RuleFor(u => u.PasswordHash).NotEmpty();
         }
     }
 }

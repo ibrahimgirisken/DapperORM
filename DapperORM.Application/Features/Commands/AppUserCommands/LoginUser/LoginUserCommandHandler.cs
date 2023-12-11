@@ -11,11 +11,11 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
 {
     public class LoginUserCommandHandler:IRequestHandler<LoginUserCommandRequest,LoginUserCommandResponse>
     {
-        readonly UserManager<AppUser> _userManager;
-        readonly SignInManager<AppUser> _signInManager;
+        readonly UserManager<ErrorViewModel> _userManager;
+        readonly SignInManager<ErrorViewModel> _signInManager;
         readonly ITokenHandler _tokenHandler;
 
-        public LoginUserCommandHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenHandler tokenHandler)
+        public LoginUserCommandHandler(UserManager<ErrorViewModel> userManager, SignInManager<ErrorViewModel> signInManager, ITokenHandler tokenHandler)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -25,7 +25,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request,CancellationToken cancellationToken)
         {
-            AppUser user = await _userManager.FindByNameAsync(request.UserNameOrEmail);
+            ErrorViewModel user = await _userManager.FindByNameAsync(request.UserNameOrEmail);
             if (user == null)
                 user = await _userManager.FindByEmailAsync(request.UserNameOrEmail);
 

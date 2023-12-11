@@ -6,7 +6,7 @@ using DapperORM.Domain.Identity.Models;
 
 namespace DapperORM.Persistence.Repositories
 {
-    public class DapperUserRepository : DapperGenericRepository<AppUser>, IUserRepository
+    public class DapperUserRepository : DapperGenericRepository<ErrorViewModel>, IUserRepository
     {
         public DapperUserRepository(IDapperContext dapperContext) : base(dapperContext, "Users")
         {
@@ -14,26 +14,26 @@ namespace DapperORM.Persistence.Repositories
         }
 
 
-        public async Task<AppUser> FindByNameAsync(string UserNameOrEmail)
+        public async Task<ErrorViewModel> FindByNameAsync(string UserNameOrEmail)
         {
             var query = $"select * from Users where Name = @UserNameOrEmail or Email=@UserNameOrEmail";
 
             using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return (AppUser)conn.Query<AppUser>(query);
+                return (ErrorViewModel)conn.Query<ErrorViewModel>(query);
             }
         }
 
-        public async Task<bool> CheckPasswordSignInAsync(AppUser user)
+        public async Task<bool> CheckPasswordSignInAsync(ErrorViewModel user)
         {
-            var passwordHash = user.PasswordHash;
+            var passwordHash = user.ShowRequestId;
             var query = $"select * from Users where PasswordHash = @passwordHash";
 
             using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return conn.Query<AppUser>(query).Any();
+                return conn.Query<ErrorViewModel>(query).Any();
             }
         }
     }

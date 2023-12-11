@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Interfaces.Repositories
 {
-    public interface IUserRepository : IGenericRepository<AppUser>
+    public interface IUserRepository : IGenericRepository<ErrorViewModel>
     {
-        Task<AppUser> FindByNameAsync(string UserNameOrEmail);
+        Task<ErrorViewModel> FindByNameAsync(string UserNameOrEmail);
 
-        Task<Boolean> CheckPasswordSignInAsync(AppUser user);
+        Task<Boolean> CheckPasswordSignInAsync(ErrorViewModel user);
     }
 }

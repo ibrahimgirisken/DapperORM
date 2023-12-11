@@ -1,12 +1,7 @@
-﻿using AspNetCore.Identity.Dapper;
-using AspNetCore.Identity.Dapper.Models;
-using DapperORM.Application;
+﻿using DapperORM.Application;
 using DapperORM.Infrastructure;
 using DapperORM.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
-using System.Text;
 using WebAPI.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);

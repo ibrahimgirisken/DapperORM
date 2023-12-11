@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Abstractions\Identity\**" />
+    <EmbeddedResource Remove="Abstractions\Identity\**" />
+    <None Remove="Abstractions\Identity\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCore.Identity.DapperOrm" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
@@ -22,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\Identity\" />
     <Folder Include="Features\Commands\AppUserCommands\UpdateUser\" />
     <Folder Include="Features\Commands\AppUserCommands\RemoveUser\" />
     <Folder Include="Features\Queries\UserQueries\GetAllUser\" />

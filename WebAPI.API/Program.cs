@@ -1,6 +1,9 @@
-﻿using DapperORM.Application;
+﻿using Daarto.WebUI.Data.Tables;
+using Daarto.WebUI.Data;
+using DapperORM.Application;
 using DapperORM.Infrastructure;
 using DapperORM.Persistence;
+using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 using WebAPI.API.Middlewares;
 
@@ -42,6 +45,13 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddIdentity<IdentityUser, ExtendedIdentityRole>(options => {
+    options.Lockout.MaxFailedAccessAttempts = 3;
+})
+.AddDapperStores(options => {
+    options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
+})
+.AddDefaultTokenProviders();
 
 //Jwt
 //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer("Admin", options =>

@@ -12,8 +12,4 @@
     <PackageReference Include="VeryGood.AspNetCore.Identity.DatabaseScripts.DbUp" Version="5.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Store\" />
-  </ItemGroup>
-
 </Project>

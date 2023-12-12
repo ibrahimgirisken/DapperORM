@@ -8,21 +8,31 @@
 
   <ItemGroup>
     <Compile Remove="Abstractions\Identity\**" />
+    <Compile Remove="NewFolder\**" />
+    <Compile Remove="Validations\Delete\**" />
+    <Compile Remove="Validations\Update\**" />
     <EmbeddedResource Remove="Abstractions\Identity\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Validations\Delete\**" />
+    <EmbeddedResource Remove="Validations\Update\**" />
     <None Remove="Abstractions\Identity\**" />
+    <None Remove="NewFolder\**" />
+    <None Remove="Validations\Delete\**" />
+    <None Remove="Validations\Update\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.Identity.DapperOrm" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Dapper" Version="2.1.24" />
     <PackageReference Include="FluentAssertions" Version="6.12.0" />
     <PackageReference Include="FluentValidation" Version="11.7.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
     <PackageReference Include="MediatR.CQRS" Version="1.0.1" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     <PackageReference Include="VeryGood.AspNetCore.Identity.Dapper" Version="5.0.1.1" />
   </ItemGroup>
@@ -33,8 +43,6 @@
     <Folder Include="Features\Queries\UserQueries\GetAllUser\" />
     <Folder Include="Features\Queries\UserQueries\GetByIdUser\" />
     <Folder Include="Features\Queries\UserQueries\GetEvent\" />
-    <Folder Include="Validations\Delete\" />
-    <Folder Include="Validations\Update\" />
   </ItemGroup>
 
   <ItemGroup>

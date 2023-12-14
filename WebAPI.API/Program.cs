@@ -1,7 +1,6 @@
 ﻿using DapperORM.Application;
 using DapperORM.Infrastructure;
 using DapperORM.Persistence;
-using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 using WebAPI.API.Middlewares;
 

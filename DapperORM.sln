@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI.API", "WebAPI.API\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperORM.Infrastructure", "DapperORM.Infrastructure\DapperORM.Infrastructure.csproj", "{B3B7AE62-1D25-4D64-9199-A5F508E6A7F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperORM.Identity", "DapperORM.Identity\DapperORM.Identity.csproj", "{D38C824B-AC13-4FE4-A775-A68E6B296E15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperORM.Identity", "DapperORM.Identity\DapperORM.Identity.csproj", "{D38C824B-AC13-4FE4-A775-A68E6B296E15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,9 +1,9 @@
-﻿using DapperORM.Application.Abstractions;
+﻿using AutoMapper;
+using DapperORM.Application.Abstractions;
 using DapperORM.Application.DTOs;
 using DapperORM.Application.Exceptions;
 using DapperORM.Domain.Identity.Models;
 using MediatR;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
 
@@ -13,15 +13,16 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
     public class LoginUserCommandHandler:IRequestHandler<LoginUserCommandRequest,LoginUserCommandResponse>
     {
         private readonly AspNetUserManager<ErrorViewModel> _userManager;
+        private readonly IMapper _mapper;
+        private readonly SignInManager<ErrorViewModel> _signInManager;
+        private readonly ITokenHandler _tokenHandler;
 
-        readonly SignInManager<ErrorViewModel> _signInManager;
-        readonly ITokenHandler _tokenHandler;
-
-        public LoginUserCommandHandler(AspNetUserManager<ErrorViewModel> userManager, SignInManager<ErrorViewModel> signInManager, ITokenHandler tokenHandler)
+        public LoginUserCommandHandler(AspNetUserManager<ErrorViewModel> userManager, SignInManager<ErrorViewModel> signInManager, ITokenHandler tokenHandler, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenHandler = tokenHandler;
+            _mapper = mapper;
         }
 
 

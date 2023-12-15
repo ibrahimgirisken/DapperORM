@@ -10,5 +10,7 @@ namespace DapperORM.Infrastructure
         {
             servisCollection.AddScoped<ITokenHandler, TokenHandler>();
         }
+
     }
 }
+

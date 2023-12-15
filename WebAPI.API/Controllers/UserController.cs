@@ -9,7 +9,7 @@ namespace WebAPI.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        readonly IMediator _mediator;
+        private readonly IMediator _mediator;
 
         public UserController(IMediator mediator)
         {
@@ -27,8 +27,10 @@ namespace WebAPI.API.Controllers
                 return Ok(result);
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpPost("[action]")]
-        public async Task<IActionResult> Login(LoginUserCommandRequest request)
+        public async Task<IActionResult> Login([FromQuery] LoginUserCommandRequest request)
         {
            LoginUserCommandResponse response = await _mediator.Send(request);
             return Ok(response);

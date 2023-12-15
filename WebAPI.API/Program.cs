@@ -1,4 +1,5 @@
 ﻿using DapperORM.Application;
+using DapperORM.Identity;
 using DapperORM.Infrastructure;
 using DapperORM.Persistence;
 using System.Globalization;
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddIdentityDependencies();
 builder.Services.AddApplicationDependencies();
 builder.Services.AddPersistenceDependencies();
 builder.Services.AddInfrastructureDependencies();

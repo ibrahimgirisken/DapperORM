@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DapperORM.Infrastructure.Data.Tables;
+using DapperORM.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using WebAPI.API.Data;
-using WebAPI.API.Data.Tables;
 
 namespace DapperORM.Identity
 {
@@ -19,6 +19,6 @@ namespace DapperORM.Identity
         }
     }
 }
-        
-    
+
+
 

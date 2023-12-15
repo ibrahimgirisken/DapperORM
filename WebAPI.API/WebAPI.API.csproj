@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DapperORM.Application\DapperORM.Application.csproj" />
+    <ProjectReference Include="..\DapperORM.Identity\DapperORM.Identity.csproj" />
     <ProjectReference Include="..\DapperORM.Infrastructure\DapperORM.Infrastructure.csproj" />
     <ProjectReference Include="..\DapperORM.Persistence\DapperORM.Persistence.csproj" />
   </ItemGroup>

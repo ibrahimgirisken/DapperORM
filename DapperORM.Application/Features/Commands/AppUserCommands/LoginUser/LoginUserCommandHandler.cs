@@ -11,7 +11,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
 {
     public class LoginUserCommandHandler:IRequestHandler<LoginUserCommandRequest,LoginUserCommandResponse>
     {
-        readonly UserManager<ErrorViewModel> _userManager;
+        private readonly UserManager<ErrorViewModel> _userManager;
 
         readonly SignInManager<ErrorViewModel> _signInManager;
         readonly ITokenHandler _tokenHandler;
@@ -26,10 +26,9 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request,CancellationToken cancellationToken)
         {
-            ErrorViewModel user = await _userManager.FindByEmailAsync(request.UserNameOrEmail);
+            ErrorViewModel user = await _userManager.FindByNameAsync(request.UserNameOrEmail);
             if (user == null)
                 user = await _userManager.FindByEmailAsync(request.UserNameOrEmail);
-
             if (user == null)
                 throw new NotFoundUserException("Kullanıcı veya şifre hatalı!");
 

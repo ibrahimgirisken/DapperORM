@@ -1,21 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <UserSecretsId>aspnet-Daarto.WebUI-0BC4D06A-1285-4595-85EA-07A68DD02CF3</UserSecretsId>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.24" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.38" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.38" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebAPI.API\WebAPI.API.csproj" />
+    <ProjectReference Include="..\DapperORM.Application\DapperORM.Application.csproj" />
+    <ProjectReference Include="..\DapperORM.Infrastructure\DapperORM.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>

@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCore.Identity.Dapper;
+﻿using AspNetCore.Identity.Dapper;
 using Dapper;
 using Microsoft.AspNetCore.Identity;
-namespace WebAPI.API.Data.Tables
+using System;
+using System.Collections.Generic;
+using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DapperORM.Infrastructure.Data.Tables
 {
     public class ExtendedRolesTable : RolesTable<ExtendedIdentityRole, string, IdentityRoleClaim<string>>
     {

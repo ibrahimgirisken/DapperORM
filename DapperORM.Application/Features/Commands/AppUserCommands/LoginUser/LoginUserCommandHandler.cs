@@ -3,6 +3,7 @@ using DapperORM.Application.DTOs;
 using DapperORM.Application.Exceptions;
 using DapperORM.Domain.Identity.Models;
 using MediatR;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;
 
@@ -11,7 +12,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
 {
     public class LoginUserCommandHandler:IRequestHandler<LoginUserCommandRequest,LoginUserCommandResponse>
     {
-        private readonly UserManager<ErrorViewModel> _userManager;
+        private readonly AspNetUserManager<ErrorViewModel> _userManager;
 
         readonly SignInManager<ErrorViewModel> _signInManager;
         readonly ITokenHandler _tokenHandler;

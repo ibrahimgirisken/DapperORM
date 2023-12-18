@@ -13,11 +13,12 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
+    <PackageReference Include="VeryGood.AspNetCore.Identity.Dapper" Version="5.0.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DapperORM.Application\DapperORM.Application.csproj" />
-    <ProjectReference Include="..\DapperORM.Identity\DapperORM.Identity.csproj" />
     <ProjectReference Include="..\DapperORM.Infrastructure\DapperORM.Infrastructure.csproj" />
     <ProjectReference Include="..\DapperORM.Persistence\DapperORM.Persistence.csproj" />
   </ItemGroup>

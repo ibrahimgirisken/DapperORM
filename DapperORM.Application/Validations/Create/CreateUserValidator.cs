@@ -12,6 +12,7 @@ namespace DapperORM.Application.Validations.Create
     {
         public CreateUserValidator()
         {
+
         }
     }
 }

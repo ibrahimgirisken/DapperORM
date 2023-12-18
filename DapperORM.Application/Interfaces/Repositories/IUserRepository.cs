@@ -1,10 +1,5 @@
-﻿using DapperORM.Domain.Entities;
+﻿using DapperORM.Application.Identity;
 using DapperORM.Domain.Identity.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DapperORM.Application.Interfaces.Repositories
 {
@@ -13,5 +8,6 @@ namespace DapperORM.Application.Interfaces.Repositories
         Task<ErrorViewModel> FindByNameAsync(string UserNameOrEmail);
 
         Task<Boolean> CheckPasswordSignInAsync(ErrorViewModel user);
+        void Add(ErrorViewModel user);
     }
 }

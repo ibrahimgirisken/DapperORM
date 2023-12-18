@@ -2,6 +2,7 @@
 using DapperORM.Application.Abstractions;
 using DapperORM.Application.DTOs;
 using DapperORM.Application.Exceptions;
+using DapperORM.Application.Identity;
 using DapperORM.Domain.Identity.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

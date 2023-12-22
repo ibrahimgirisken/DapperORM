@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DapperORM.Domain.Identity.Models;
 using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
 using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
 

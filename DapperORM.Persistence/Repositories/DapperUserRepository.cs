@@ -1,8 +1,7 @@
 ﻿using Dapper;
-using DapperORM.Application.Identity;
+using DapperORM.Application.Identity.Models;
 using DapperORM.Application.Interfaces.DapperContext;
 using DapperORM.Application.Interfaces.Repositories;
-using DapperORM.Domain.Identity.Models;
 
 
 namespace DapperORM.Persistence.Repositories

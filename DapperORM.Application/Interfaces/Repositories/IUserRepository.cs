@@ -1,5 +1,4 @@
-﻿using DapperORM.Application.Identity;
-using DapperORM.Domain.Identity.Models;
+﻿using DapperORM.Application.Identity.Models;
 
 namespace DapperORM.Application.Interfaces.Repositories
 {

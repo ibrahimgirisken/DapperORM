@@ -1,4 +1,4 @@
-﻿using DapperORM.Domain.Identity.Models;
+﻿using DapperORM.Application.Identity.Models;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

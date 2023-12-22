@@ -1,4 +1,5 @@
-﻿using DapperORM.Application.Identity.Tables;
+﻿using DapperORM.Application.Identity.Data;
+using DapperORM.Application.Identity.Data.Tables;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

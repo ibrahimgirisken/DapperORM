@@ -1,18 +1,13 @@
 ﻿using AspNetCore.Identity.Dapper;
 using Dapper;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DapperORM.Infrastructure.Data.Tables
+namespace DapperORM.Application.Identity.Data.Tables
 {
     public class ExtendedRolesTable : RolesTable<ExtendedIdentityRole, string, IdentityRoleClaim<string>>
     {
         public ExtendedRolesTable(IDbConnectionFactory dbConnectionFactory) : base(dbConnectionFactory) { }
+
         public override async Task<bool> CreateAsync(ExtendedIdentityRole role)
         {
             const string sql = "INSERT INTO [dbo].[AspNetRoles] " +
@@ -54,8 +49,7 @@ namespace DapperORM.Infrastructure.Data.Tables
                     }, transaction);
                     const string insertClaimsSql = "INSERT INTO [dbo].[AspNetRoleClaims] (RoleId, ClaimType, ClaimValue) " +
                                                    "VALUES (@RoleId, @ClaimType, @ClaimValue);";
-                    await DbConnection.ExecuteAsync(insertClaimsSql, claims.Select(x => new
-                    {
+                    await DbConnection.ExecuteAsync(insertClaimsSql, claims.Select(x => new {
                         RoleId = role.Id,
                         x.ClaimType,
                         x.ClaimValue

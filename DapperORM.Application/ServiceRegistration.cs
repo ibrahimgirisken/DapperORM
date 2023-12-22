@@ -16,19 +16,20 @@ namespace DapperORM.Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            var identityBuilder = services.AddIdentity<IdentityUser, ExtendedIdentityRole>(options =>
-            {
-                options.Lockout.MaxFailedAccessAttempts = 3;
-            })
-.AddDapperStores(options =>
-{
-    options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
-})
-.AddDefaultTokenProviders();
+           
+//            var identityBuilder = services.AddIdentity<IdentityUser, ExtendedIdentityRole>(options =>
+//            {
+//                options.Lockout.MaxFailedAccessAttempts = 3;
+//            })
+//.AddDapperStores(options =>
+//{
+//    options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
+//})
+//.AddDefaultTokenProviders();
 
-            // Diğer servis konfigürasyonları
-            identityBuilder.Services.AddControllersWithViews();
-            identityBuilder.Services.AddRazorPages();
+//            // Diğer servis konfigürasyonları
+//            identityBuilder.Services.AddControllersWithViews();
+//            identityBuilder.Services.AddRazorPages();
         }
     }
 }

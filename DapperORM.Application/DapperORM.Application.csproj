@@ -32,9 +32,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-    <PackageReference Include="VeryGood.AspNetCore.Identity.Dapper" Version="5.0.1.1" />
     <PackageReference Include="VeryGood.AspNetCore.Identity.DatabaseScripts.DbUp" Version="5.0.1" />
-    <PackageReference Include="VeryGood.IdentityServer4.Dapper.Storage" Version="4.0.1" />
     <PackageReference Include="VeryGood.IdentityServer4.Storage.DatabaseScripts.DbUp" Version="4.0.1" />
   </ItemGroup>
 
@@ -48,6 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DapperORM.Domain\DapperORM.Domain.csproj" />
+    <ProjectReference Include="..\DapperORM.Identity\DapperORM.Identity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,9 @@
 ﻿using DapperORM.Application;
+using DapperORM.Application.Identity.Data;
+using DapperORM.Application.Identity.Data.Tables;
 using DapperORM.Infrastructure;
 using DapperORM.Persistence;
+using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 using WebAPI.API.Middlewares;
 
@@ -12,8 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationDependencies();
 builder.Services.AddPersistenceDependencies();
 builder.Services.AddInfrastructureDependencies();
-
 //Identity
+
+
 
 
 builder.Services.AddCors(option =>

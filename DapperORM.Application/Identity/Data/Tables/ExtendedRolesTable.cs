@@ -1,6 +1,8 @@
-﻿using AspNetCore.Identity.Dapper;
-using Dapper;
+﻿using Dapper;
+using DapperORM.Identity;
+using DapperORM.Identity.Tables;
 using Microsoft.AspNetCore.Identity;
+using System.Data.Common;
 
 namespace DapperORM.Application.Identity.Data.Tables
 {

@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using DapperORM.Application.Abstractions;
+﻿using DapperORM.Application.Abstractions;
 using DapperORM.Application.DTOs;
 using DapperORM.Application.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
-
 
 namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
 {

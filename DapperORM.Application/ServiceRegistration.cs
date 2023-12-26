@@ -1,8 +1,5 @@
-﻿using DapperORM.Application.Identity.Data;
-using DapperORM.Application.Identity.Data.Tables;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -12,24 +9,9 @@ namespace DapperORM.Application
     {
         public static void AddApplicationDependencies(this IServiceCollection services)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
-           
-//            var identityBuilder = services.AddIdentity<IdentityUser, ExtendedIdentityRole>(options =>
-//            {
-//                options.Lockout.MaxFailedAccessAttempts = 3;
-//            })
-//.AddDapperStores(options =>
-//{
-//    options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
-//})
-//.AddDefaultTokenProviders();
-
-//            // Diğer servis konfigürasyonları
-//            identityBuilder.Services.AddControllersWithViews();
-//            identityBuilder.Services.AddRazorPages();
         }
     }
 }

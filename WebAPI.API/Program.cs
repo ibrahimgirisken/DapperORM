@@ -1,28 +1,18 @@
-﻿using DapperORM.Application;
-using DapperORM.Infrastructure;
+﻿using DapperORM.Infrastructure;
 using DapperORM.Persistence;
-using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 using WebAPI.API.Middlewares;
-using DapperORM.Persistence.Context;
-using FluentAssertions.Common;
-using DapperORM.Application.Identity.Data;
-using DapperORM.Application.Identity.Data.Tables;
+using DapperORM.Application;
+using WebAPI.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddApplicationDependencies();
 builder.Services.AddPersistenceDependencies();
 builder.Services.AddInfrastructureDependencies();
-builder.Services.AddIdentity<IdentityUser, ExtendedIdentityRole>(options => {
-    options.Lockout.MaxFailedAccessAttempts = 3;
-})
- .AddDapperStores(options => {
-     options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
- })
- .AddDefaultUI()
- .AddDefaultTokenProviders();
+
 
 builder.Services.AddRazorPages();
 builder.Services.AddCors(option =>
@@ -49,13 +39,11 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<RequestLocalizationCookiesMiddleware>();
 var app = builder.Build();
-
 
 // Configure the HTTP request pipelineAddApplicationDependencies
 if (app.Environment.IsDevelopment())

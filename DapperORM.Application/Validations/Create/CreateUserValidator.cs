@@ -1,5 +1,4 @@
-﻿using DapperORM.Application.Identity.Models;
-using FluentValidation;
+﻿using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Validations.Create
 {
-    public class CreateUserValidator:AbstractValidator<ErrorViewModel>
+    public class CreateUserValidator
     {
         public CreateUserValidator()
         {

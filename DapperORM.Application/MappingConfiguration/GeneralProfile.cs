@@ -10,12 +10,6 @@ using DapperORM.Application.Features.Queries.CategoryQueries.GetByIdCategory;
 using DapperORM.Application.Features.Queries.ProductQueries.GetAllProduct;
 using DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct;
 using DapperORM.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
 using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
 
 namespace DapperORM.Application.MappingConfiguration

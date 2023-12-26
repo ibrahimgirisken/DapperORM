@@ -1,12 +1,6 @@
-﻿using DapperORM.Application.Identity.Models;
-
-namespace DapperORM.Application.Interfaces.Repositories
+﻿namespace DapperORM.Application.Interfaces.Repositories
 {
-    public interface IUserRepository : IGenericRepository<ErrorViewModel>
+    public interface IUserRepository 
     {
-        Task<ErrorViewModel> FindByNameAsync(string UserNameOrEmail);
-
-        Task<Boolean> CheckPasswordSignInAsync(ErrorViewModel user);
-        void Add(ErrorViewModel user);
     }
 }

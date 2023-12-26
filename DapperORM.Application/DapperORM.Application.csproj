@@ -46,7 +46,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DapperORM.Domain\DapperORM.Domain.csproj" />
-    <ProjectReference Include="..\DapperORM.Identity\DapperORM.Identity.csproj" />
   </ItemGroup>
 
 </Project>

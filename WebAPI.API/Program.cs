@@ -1,23 +1,30 @@
 ﻿using DapperORM.Application;
 using DapperORM.Infrastructure;
 using DapperORM.Persistence;
+using Microsoft.AspNetCore.Identity;
 using System.Globalization;
 using WebAPI.API.Middlewares;
+using DapperORM.Persistence.Context;
+using FluentAssertions.Common;
+using DapperORM.Application.Identity.Data;
+using DapperORM.Application.Identity.Data.Tables;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-builder.Services.AddApplicationDependencies();
 builder.Services.AddPersistenceDependencies();
 builder.Services.AddInfrastructureDependencies();
-//Identity
+builder.Services.AddIdentity<IdentityUser, ExtendedIdentityRole>(options => {
+    options.Lockout.MaxFailedAccessAttempts = 3;
+})
+ .AddDapperStores(options => {
+     options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
+ })
+ .AddDefaultUI()
+ .AddDefaultTokenProviders();
 
-
-
-
-
+builder.Services.AddRazorPages();
 builder.Services.AddCors(option =>
 option.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()));
 

@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using DapperORM.Application.Abstractions;
+using DapperORM.Application.DTOs;
+using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;

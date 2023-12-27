@@ -3,7 +3,9 @@ using DapperORM.Persistence;
 using System.Globalization;
 using WebAPI.API.Middlewares;
 using DapperORM.Application;
-using WebAPI.API;
+using Microsoft.AspNetCore.Identity;
+using DapperORM.Identity;
+using DapperORM.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,8 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationDependencies();
 builder.Services.AddPersistenceDependencies();
 builder.Services.AddInfrastructureDependencies();
-
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+   .AddDapperStores();
 
 builder.Services.AddRazorPages();
 builder.Services.AddCors(option =>

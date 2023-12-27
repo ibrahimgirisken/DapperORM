@@ -1,11 +1,11 @@
-﻿using Dapper;
-using DapperORM.Identity.Abstract;
-using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
+using DapperORM.Identity.Abstract;
+using Microsoft.AspNetCore.Identity;
 
 namespace DapperORM.Identity.Tables
 {

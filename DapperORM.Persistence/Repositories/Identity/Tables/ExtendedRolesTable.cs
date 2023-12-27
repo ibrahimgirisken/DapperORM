@@ -1,12 +1,12 @@
 ﻿using Dapper;
+using DapperORM.Identity;
 using DapperORM.Identity.Tables;
 using Microsoft.AspNetCore.Identity;
-
-namespace DapperORM.Identity.Data.Tables
+namespace DapperORM.Persistence.Repositories.Identity.Tables
 {
     public class ExtendedRolesTable : RolesTable<ExtendedIdentityRole, string, IdentityRoleClaim<string>>
     {
-        public ExtendedRolesTable(IDbConnectionFactory dbConnectionFactory) : base((DapperORM.Identity.IDbConnectionFactory)dbConnectionFactory) { }
+        public ExtendedRolesTable(IDbConnectionFactory dbConnectionFactory) : base(dbConnectionFactory) { }
 
         public override async Task<bool> CreateAsync(ExtendedIdentityRole role)
         {

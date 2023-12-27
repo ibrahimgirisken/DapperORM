@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DapperORM.Identity.Data
+namespace DapperORM.Persistence.Repositories.Identity
 {
     public class ExtendedIdentityRole : IdentityRole<string>
     {

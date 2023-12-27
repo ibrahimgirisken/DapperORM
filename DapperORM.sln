@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI.API", "WebAPI.API\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperORM.Infrastructure", "DapperORM.Infrastructure\DapperORM.Infrastructure.csproj", "{B3B7AE62-1D25-4D64-9199-A5F508E6A7F6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperORM.Identity", "DapperORM.Identity\DapperORM.Identity.csproj", "{6BEADD50-CF8C-4510-B007-9E750D033337}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{B3B7AE62-1D25-4D64-9199-A5F508E6A7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B7AE62-1D25-4D64-9199-A5F508E6A7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B7AE62-1D25-4D64-9199-A5F508E6A7F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BEADD50-CF8C-4510-B007-9E750D033337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BEADD50-CF8C-4510-B007-9E750D033337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BEADD50-CF8C-4510-B007-9E750D033337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BEADD50-CF8C-4510-B007-9E750D033337}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{FD8FC62B-8030-48E1-8D89-0C2D87E674E8} = {9B0F1C10-5A31-43F8-87B8-20014B40ADC2}
 		{E479A2BA-E64E-438E-841A-5056DBF46D2A} = {DDCBC45C-347B-48BC-B131-319B2D2ABC85}
 		{B3B7AE62-1D25-4D64-9199-A5F508E6A7F6} = {9B0F1C10-5A31-43F8-87B8-20014B40ADC2}
+		{6BEADD50-CF8C-4510-B007-9E750D033337} = {9B0F1C10-5A31-43F8-87B8-20014B40ADC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27EED28-479D-4EDC-BFA8-5129AF5AE3B7}

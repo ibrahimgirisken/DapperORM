@@ -11,6 +11,7 @@ using DapperORM.Application.Features.Queries.ProductQueries.GetAllProduct;
 using DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct;
 using DapperORM.Domain.Entities;
 using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
+using Microsoft.AspNetCore.Identity;
 
 namespace DapperORM.Application.MappingConfiguration
 {
@@ -31,6 +32,7 @@ namespace DapperORM.Application.MappingConfiguration
             CreateMap<Category, GetByIdCategoryQueryRequest>().ReverseMap();
             CreateMap<Product, GetByIdProductQueryRequest>().ReverseMap();
             CreateMap<Category, GetAllCategoryQueryRequest>().ReverseMap();
+            CreateMap<IdentityUser, LoginUserCommandRequest>().ReverseMap();
  
         }
     }

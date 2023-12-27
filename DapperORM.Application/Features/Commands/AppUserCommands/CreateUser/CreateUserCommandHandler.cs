@@ -1,21 +1,24 @@
-﻿using DapperORM.Domain.Common.Result;
+﻿using DapperORM.Application.Abstractions;
+using DapperORM.Domain.Common.Result;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest,IDataResult>
     {
-        //private readonly IUserRepository _userRepository;
-        //private readonly IMapper _mapper;
-        //private readonly CreateUserValidator _validator;
+        readonly UserManager<IdentityUser> _userManager;
+        readonly SignInManager<IdentityUser> _signInManager;
+        readonly ITokenHandler _tokenHandler;
 
-        //public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper, CreateUserValidator validator)
-        //{
-        //    _userRepository = userRepository;
-        //    _mapper = mapper;
-        //    _validator = validator;
-        //}
+        public CreateUserCommandHandler(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
+
 
         public Task<IDataResult> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {

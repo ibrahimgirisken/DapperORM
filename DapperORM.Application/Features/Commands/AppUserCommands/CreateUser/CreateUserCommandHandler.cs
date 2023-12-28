@@ -1,12 +1,13 @@
 ﻿using DapperORM.Application.Abstractions;
 using DapperORM.Domain.Common.Result;
+using DapperORM.Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
 
 namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest,IDataResult>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest, IDataResult>
     {
         readonly UserManager<IdentityUser> _userManager;
         readonly SignInManager<IdentityUser> _signInManager;
@@ -20,18 +21,22 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
 
 
 
-        public Task<IDataResult> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            //ErrorViewModel user = _mapper.Map<ErrorViewModel>(request);
-            //var result = _validator.Validate(user);
+            var _identityUser = new IdentityUser
+            {
+                UserName = request.UserName,
+                PasswordHash = request.PasswordHash,
+                Email = request.Email,
+                PhoneNumber = request.PhoneNumber
+            };
+           IdentityResult response =await _userManager.CreateAsync(_identityUser);
 
-            //if (result.Errors.Any())
-            //{
-            //    return Task.FromResult<IDataResult>(new ErrorResult(result.Errors.First().ErrorMessage));
-            //}
-            //_userRepository.Add(user);
-            //return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.User_Added));
-            throw new NotImplementedException();
+            if (response.Succeeded)
+            {
+            return new SuccessResult(ResultMessages.User_Added);
+            }
+                 throw new NotImplementedException();
         }
     }
 

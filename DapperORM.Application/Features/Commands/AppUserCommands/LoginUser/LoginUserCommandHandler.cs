@@ -32,7 +32,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.LoginUser
             if (result.Succeeded)//Authentication başarılı !
             {
                 //yetkiler belirlenecek!
-                Token token = _tokenHandler.CreateAccessToken(5);
+                Token token = _tokenHandler.CreateAccessToken(1);
                 return new LoginUserSuccessCommandResponse()
                 {
                     Token = token

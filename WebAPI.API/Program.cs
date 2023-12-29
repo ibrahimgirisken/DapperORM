@@ -20,8 +20,8 @@ builder.Services.AddInfrastructureDependencies();
 builder.Services.AddPersistenceDependencies();
 builder.Services.AddIdentity<IdentityUser, ExtendedIdentityRole>(options => { options.Lockout.MaxFailedAccessAttempts = 3; })
    .AddDapperStores(options => {
-        options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
-    }).AddDefaultUI().AddDefaultTokenProviders();
+       options.AddRolesTable<ExtendedRolesTable, ExtendedIdentityRole>();
+   }).AddDefaultUI().AddDefaultTokenProviders();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 

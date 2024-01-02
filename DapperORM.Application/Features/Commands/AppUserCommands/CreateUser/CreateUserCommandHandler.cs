@@ -10,13 +10,10 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest, IDataResult>
     {
         readonly UserManager<IdentityUser> _userManager;
-        readonly SignInManager<IdentityUser> _signInManager;
-        readonly ITokenHandler _tokenHandler;
 
-        public CreateUserCommandHandler(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public CreateUserCommandHandler(UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
         }
 
 
@@ -28,7 +25,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
                 UserName = request.UserName,
                 PasswordHash = request.PasswordHash,
                 Email = request.Email,
-                PhoneNumber = request.PhoneNumber
+                SecurityStamp= Guid.NewGuid().ToString()
             };
            IdentityResult response =await _userManager.CreateAsync(_identityUser);
 
@@ -36,7 +33,7 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
             {
             return new SuccessResult(ResultMessages.User_Added);
             }
-                 throw new NotImplementedException();
+            return new ErrorResult(response.Errors.Select(e => e.Description).ToString()); // Hata bilgilerini döndürün
         }
     }
 

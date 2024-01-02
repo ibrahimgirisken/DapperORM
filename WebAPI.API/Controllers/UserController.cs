@@ -32,8 +32,8 @@ namespace WebAPI.API.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Login([FromQuery] LoginUserCommandRequest request)
         {
-           LoginUserCommandResponse response = await _mediator.Send(request);
-            return Ok(response);
+           LoginUserCommandResponse result = await _mediator.Send(request);
+            return Ok(result);
         }
     }
 }

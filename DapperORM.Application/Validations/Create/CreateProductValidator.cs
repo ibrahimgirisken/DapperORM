@@ -13,7 +13,6 @@ namespace DapperORM.Application.Validations.Create
     {
         public CreateProductValidator()
         {
-            RuleFor(p => p.Name).CheckProductName();
         }
     }
 }

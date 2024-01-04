@@ -12,6 +12,7 @@ using DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct;
 using DapperORM.Domain.Entities;
 using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
 using Microsoft.AspNetCore.Identity;
+using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
 
 namespace DapperORM.Application.MappingConfiguration
 {
@@ -21,17 +22,21 @@ namespace DapperORM.Application.MappingConfiguration
         {
             //Command
             CreateMap<Product, CreateProductCommandRequest>().ReverseMap();
-            CreateMap<Category, CreateCategoryCommandRequest>().ReverseMap();
             CreateMap<Product, RemoveProductCommandRequest>().ReverseMap();
-            CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
             CreateMap<Product, UpdateProductCommandRequest>().ReverseMap();
+            CreateMap<Category, CreateCategoryCommandRequest>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommandRequest>().ReverseMap();
+            CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
+            CreateMap<IdentityUser,CreateUserCommandRequest>().ReverseMap();
 
             //Queries
             CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();
-            CreateMap<Category, GetByIdCategoryQueryRequest>().ReverseMap();
             CreateMap<Product, GetByIdProductQueryRequest>().ReverseMap();
+
+            
+            CreateMap<Category, GetByIdCategoryQueryRequest>().ReverseMap();
             CreateMap<Category, GetAllCategoryQueryRequest>().ReverseMap();
+
             CreateMap<IdentityUser, LoginUserCommandRequest>().ReverseMap();
  
         }

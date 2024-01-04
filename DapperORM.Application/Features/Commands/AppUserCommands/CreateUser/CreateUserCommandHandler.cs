@@ -1,4 +1,6 @@
-﻿using DapperORM.Application.Abstractions;
+﻿using AutoMapper;
+using DapperORM.Application.Abstractions;
+using DapperORM.Application.Validations.Create;
 using DapperORM.Domain.Common.Result;
 using DapperORM.Domain.Constants;
 using MediatR;
@@ -10,30 +12,30 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest, IDataResult>
     {
         readonly UserManager<IdentityUser> _userManager;
+        private readonly IMapper _mapper;
+        private readonly CreateUserValidator _createUserValidation;
 
-        public CreateUserCommandHandler(UserManager<IdentityUser> userManager)
+        public CreateUserCommandHandler(UserManager<IdentityUser> userManager, IMapper mapper, CreateUserValidator createUserValidation)
         {
             _userManager = userManager;
+            _mapper = mapper;
+            _createUserValidation = createUserValidation;
         }
 
 
 
         public async Task<IDataResult> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            IdentityUser _user = new IdentityUser
+            IdentityUser _user = _mapper.Map<IdentityUser>(request);
+            var result = _createUserValidation.Validate(_user);
+            if (result.Errors.Any())
             {
-                Email = request.Email,
-                UserName = request.UserName,
-                PasswordHash = request.Password
-            };
-           IdentityResult response =await _userManager.CreateAsync(_user,_user.PasswordHash);
-
-            if (response.Succeeded)
-           await _userManager.AddToRoleAsync(_user, "Administrator");
-            {
-            return new SuccessResult(ResultMessages.User_Added);
+                return await Task.FromResult<IDataResult>(new ErrorResult(result.Errors.First().ErrorMessage)); 
             }
-            return new ErrorResult(response.Errors.Select(e => e.Description).ToString()); // Hata bilgilerini döndürün
+           await _userManager.CreateAsync(_user, _user.PasswordHash);
+           await _userManager.AddToRoleAsync(_user, "Administrator");
+           return await Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.User_Added));
+           // Hata bilgilerini döndürün
         }
     }
 

@@ -20,14 +20,12 @@ namespace DapperORM.Application.Features.Commands.AppUserCommands.CreateUser
 
         public async Task<IDataResult> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            var _identityUser = new IdentityUser
-            {
-                UserName = request.UserName,
-                PasswordHash = request.PasswordHash,
-                Email = request.Email,
-                SecurityStamp= Guid.NewGuid().ToString()
-            };
-           IdentityResult response =await _userManager.CreateAsync(_identityUser);
+           IdentityResult response =await _userManager.CreateAsync(new IdentityUser
+           {
+               Email = request.Email,
+               UserName = request.UserName,
+               PasswordHash= request.Password
+           },request.Password);
 
             if (response.Succeeded)
             {

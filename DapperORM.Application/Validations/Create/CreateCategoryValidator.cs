@@ -13,7 +13,7 @@ namespace DapperORM.Application.Validations.Create
     {
         public CreateCategoryValidator()
         {
-            RuleFor(c => c.Name).CheckCategoryName();
+           
         }
     }
 }

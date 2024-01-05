@@ -22,8 +22,9 @@ namespace DapperORM.Application.Features.Queries.ProductQueries.GetEvent
 
         public Task<IDataResult<List<Product>>> Handle(GetProductByCategoryQueryRequest request, CancellationToken cancellationToken)
         {
-           var result=  _productRepository.GetProductByCategoryId(request.Id);
-            return Task.FromResult<IDataResult<List<Product>>>(new SuccessDataResult<List<Product>>(result));
+            return null;
+           //var result=  _productRepository.GetProductByCategoryId(request.Id);
+           // return Task.FromResult<IDataResult<List<ProductTranslation>>>(new SuccessDataResult<List<Product>>(result));
         }
     }
     

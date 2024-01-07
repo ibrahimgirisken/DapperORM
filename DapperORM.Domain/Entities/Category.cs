@@ -9,12 +9,16 @@ namespace DapperORM.Domain.Entities
 {
     public class Category:IBaseEntity
     {
+        public Category()
+        {
+            Localizations = new List<CategoryTranslation>();
+            Products = new List<Product>();
+        }
         public int Id { get; set; }
-
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
         [DapperIgnore]
-        public virtual List<CategoryTranslation> Localizations { get; set; }
         public ICollection<Product> Products { get; set; }
+        public ICollection<CategoryTranslation> Localizations { get; set; }
     }
 }

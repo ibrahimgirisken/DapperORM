@@ -10,16 +10,9 @@ namespace DapperORM.Persistence.Repositories
 {
     public class DapperProductRepository : DapperGenericRepository<Product>, IProductRepository
     {
-        public DapperProductRepository(IDapperContext dapperContext) : base(dapperContext,"Products")
+        public DapperProductRepository(IDapperContext dapperContext, string tableName) : base(dapperContext, tableName)
         {
         }
-
-        public void AddProductAndProductTranslations(ProductToTranslationDto product)
-        {
-
-        }
-
-
 
         public List<Product> GetProductByCategoryId(int id)
         {

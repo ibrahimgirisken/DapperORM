@@ -41,6 +41,7 @@ namespace DapperORM.Persistence.Repositories
 
         }
 
+
         public void AddRange(IEnumerable<T> entities)
         {
             var columns = GetColumns();

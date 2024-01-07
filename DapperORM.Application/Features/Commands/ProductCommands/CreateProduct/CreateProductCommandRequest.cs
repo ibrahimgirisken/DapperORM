@@ -12,7 +12,7 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
     public class CreateProductCommandRequest:IRequest<IDataResult>
     {
         public int CategoryId { get; set; }
-        public List<ProductTranslation> Translations{ get; set; }
+        public Product Product { get; set; }
 
     }
 }

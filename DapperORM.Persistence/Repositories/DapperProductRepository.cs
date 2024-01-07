@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DapperORM.Application.DTOs;
 using DapperORM.Application.Interfaces.DapperContext;
 using DapperORM.Application.Interfaces.Repositories;
 using DapperORM.Domain.Entities;
@@ -13,19 +14,12 @@ namespace DapperORM.Persistence.Repositories
         {
         }
 
-        public void AddRange(Product products)
+        public void AddProductAndProductTranslations(ProductToTranslationDto product)
         {
-            var productTranslation = products.Translations.Select(t => new ProductTranslation
-            {
-                Content = t.Content,
-                Title = t.Title,
-                MetaDescription = t.MetaDescription,
-                MetaKeywords = t.MetaKeywords,
-                Name = t.Name,
-                LanguageId = t.LanguageId,
-                ProductId = t.ProductId,
-            });
+
         }
+
+
 
         public List<Product> GetProductByCategoryId(int id)
         {

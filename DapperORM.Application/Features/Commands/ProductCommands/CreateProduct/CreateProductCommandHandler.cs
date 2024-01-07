@@ -22,18 +22,6 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
 
         public Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            var productTranslations = request.Translations.Select(l =>new ProductTranslation
-            {
-                Language = l.Language,
-                Content = l.Content,
-                MetaDescription = l.MetaDescription,
-                MetaKeywords = l.MetaKeywords,
-                LanguageId = l.LanguageId,
-                Name = l.Name,
-                ProductId = l.ProductId,
-                Title = l.Title,
-                Product = l.Product
-            });
             Product product = _mapper.Map<Product>(request);
             var result = _createProductValidator.Validate(product);
             if (result.Errors.Any())

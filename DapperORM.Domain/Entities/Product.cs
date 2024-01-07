@@ -16,6 +16,6 @@ namespace DapperORM.Domain.Entities
         public int CategoryId { get; set; }
 
         // İlişki
-        public virtual List<ProductTranslation> Translations { get; set; }
+        public ICollection<ProductTranslation> Translations { get; set; }
     }
 }

@@ -10,16 +10,12 @@ namespace DapperORM.Domain.Entities
 {
     public class Product : IBaseEntity
     {
-        public Product()
-        {
-            Translations = new List<ProductTranslation>();
-        }
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
 
         // İlişki
         public int CategoryId { get; set; }
-        public ICollection<ProductTranslation> Translations { get; set; }
+        public List<ProductTranslation> ProductTranslations { get; set; } = new();
     }
 }

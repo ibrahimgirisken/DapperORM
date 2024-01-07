@@ -12,7 +12,6 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
     public class CreateProductCommandRequest:IRequest<IDataResult>
     {
         public int CategoryId { get; set; }
-        public Product Product { get; set; }
 
     }
 }

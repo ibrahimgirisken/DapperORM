@@ -15,13 +15,15 @@ namespace DapperORM.Domain.Entities
         public string Content { get; set; }
         public string MetaDescription { get; set; }
         public string MetaKeywords { get; set; }
-
-        // Foreign Key Properties
-        public int LanguageId { get; set; }
+        //Foreign Key Property
         public int ProductId { get; set; }
+        public int LanguageId { get; set; }
 
+<<<<<<< HEAD
         // İlişki
         public virtual Language Language { get; set; }
         public virtual Product Product { get; set; }
+=======
+>>>>>>> 4b6554a7615743909ab69f5e605d0908ac60ec9c
     }
 }

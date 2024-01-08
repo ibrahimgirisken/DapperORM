@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Domain.Entities
 {
-    public class Product : IBaseEntity
+    public class Product:IBaseEntity
     {
         public int Id { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public DateTime UpdatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; }= DateTime.Now;
+        public DateTime UpdatedDate { get; set; }=DateTime.Now;
         public int CategoryId { get; set; }
+        //Foreign Key Property
 
-        // İlişki
-        public virtual List<ProductTranslation> Translations { get; set; }
+        public virtual List<ProductTranslation> Localizations { get; set; }
     }
 }

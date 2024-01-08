@@ -13,20 +13,6 @@ namespace DapperORM.Persistence.Repositories
         {
         }
 
-        public void AddRange(Product products)
-        {
-            var productTranslation = products.Translations.Select(t => new ProductTranslation
-            {
-                Content = t.Content,
-                Title = t.Title,
-                MetaDescription = t.MetaDescription,
-                MetaKeywords = t.MetaKeywords,
-                Name = t.Name,
-                LanguageId = t.LanguageId,
-                ProductId = t.ProductId,
-            });
-        }
-
         public List<Product> GetProductByCategoryId(int id)
         {
             var query = $"select * from Products where CategoryId={id}";

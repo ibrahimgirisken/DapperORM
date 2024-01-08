@@ -8,6 +8,6 @@ namespace DapperORM.Application.DTOs
 {
     public class ProductDto
     {
-        public ICollection<ProductTranslationDto> Translations { get; set; }
+        public List<ProductTranslationDto> Translations { get; set; } = new();
     }
 }

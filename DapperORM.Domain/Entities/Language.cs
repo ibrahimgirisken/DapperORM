@@ -11,6 +11,5 @@ namespace DapperORM.Domain.Entities
         public int Id { get; set; }
         public string Code{ get; set; }
         public string Name { get; set; }
-        public virtual List<ProductTranslation> Translations { get; set; }
     }
 }

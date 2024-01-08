@@ -1,5 +1,4 @@
 ﻿using DapperORM.Domain.Common.Result;
-using DapperORM.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,8 +10,9 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
 {
     public class CreateProductCommandRequest:IRequest<IDataResult>
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
         public int CategoryId { get; set; }
-        public List<ProductTranslation> Translations{ get; set; }
 
     }
 }

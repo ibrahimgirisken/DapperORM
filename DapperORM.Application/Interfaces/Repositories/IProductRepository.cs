@@ -1,4 +1,5 @@
-﻿using DapperORM.Domain.Common;
+﻿using DapperORM.Application.DTOs;
+using DapperORM.Domain.Common;
 using DapperORM.Domain.Entities;
 using System;
 using System.Collections;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DapperORM.Application.Interfaces.Repositories
 {
-    public interface IProductRepository : IGenericRepository<Product>
+    public interface IProductRepository:IGenericRepository<Product>
     {
         public List<Product> GetProductByCategoryId(int id);
     }

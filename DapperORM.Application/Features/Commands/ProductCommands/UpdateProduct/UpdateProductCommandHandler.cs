@@ -25,7 +25,7 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.UpdateProduct
 
         public Task<IDataResult> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            Product product =_mapper.Map<Product>(request);
+           Product product=_mapper.Map<Product>(request);
             _productRepository.Update(product);
             return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Updated));
         }

@@ -33,6 +33,7 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
                 ProductId = l.ProductId,
                 Title = l.Title,
                 Product = l.Product
+
             });
             Product product = _mapper.Map<Product>(request);
             var result = _createProductValidator.Validate(product);

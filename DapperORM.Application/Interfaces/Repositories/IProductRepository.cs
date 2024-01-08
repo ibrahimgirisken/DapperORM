@@ -12,6 +12,5 @@ namespace DapperORM.Application.Interfaces.Repositories
     public interface IProductRepository : IGenericRepository<Product>
     {
         public List<Product> GetProductByCategoryId(int id);
-        public void AddRange(Product products);
     }
 }

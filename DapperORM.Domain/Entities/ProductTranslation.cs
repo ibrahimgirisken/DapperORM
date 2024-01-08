@@ -21,7 +21,7 @@ namespace DapperORM.Domain.Entities
         public int ProductId { get; set; }
 
         // İlişki
-        public virtual Product Product { get; set; }
         public virtual Language Language { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

@@ -20,17 +20,11 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
             _createProductValidator = createProductValidator;
         }
 
-        public Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public  Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = _mapper.Map<Product>(request);
-
-            var result = _createProductValidator.Validate(product);
-            if (result.Errors.Any())
-            {
-                return Task.FromResult<IDataResult>(new ErrorResult(result.Errors.First().ErrorMessage));
-            }
-            _productRepository.Add(product);
             return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added));
+
         }
     }
 }

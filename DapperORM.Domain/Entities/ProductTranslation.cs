@@ -1,6 +1,8 @@
 ﻿using DapperORM.Domain.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +17,7 @@ namespace DapperORM.Domain.Entities
         public string Content { get; set; }
         public string MetaDescription { get; set; }
         public string MetaKeywords { get; set; }
-        //Foreign Key Property
+        public string LanguageCode { get; set; }
         public int ProductId { get; set; }
-        public int LanguageId { get; set; }
-
-        public virtual Language Language { get; set; }
-        public virtual Product Product { get; set; }
     }
 }

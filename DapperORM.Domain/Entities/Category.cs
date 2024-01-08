@@ -12,9 +12,7 @@ namespace DapperORM.Domain.Entities
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
-
-        [DapperIgnore]
-        public List<Product> Products { get; set; } = new();
-        public List<CategoryTranslation> CategoryTranslations { get; set; } = new();
+        public List<Product> Products { get; set; }
+        public List<CategoryTranslation> CategoryTranslations { get; set; }
     }
 }

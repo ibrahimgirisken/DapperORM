@@ -39,12 +39,6 @@ namespace DapperORM.Persistence.Repositories
             });
 
         }
-
-<<<<<<< HEAD
-=======
-   
-
->>>>>>> 4b6554a7615743909ab69f5e605d0908ac60ec9c
         public void Delete(T entity)
         {
             var query = $"delete from {_tableName} where Id=@Id";

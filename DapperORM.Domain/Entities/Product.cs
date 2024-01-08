@@ -14,8 +14,6 @@ namespace DapperORM.Domain.Entities
         public DateTime CreatedDate { get; set; }= DateTime.Now;
         public DateTime UpdatedDate { get; set; }=DateTime.Now;
         public int CategoryId { get; set; }
-        //Foreign Key Property
 
-        public virtual List<ProductTranslation> Localizations { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace DapperORM.Persistence.Repositories
 {
     public class DapperProductRepository : DapperGenericRepository<Product>, IProductRepository
     {
-        public DapperProductRepository(IDapperContext dapperContext, string tableName) : base(dapperContext, tableName)
+        public DapperProductRepository(IDapperContext dapperContext) : base(dapperContext, "Products")
         {
         }
 

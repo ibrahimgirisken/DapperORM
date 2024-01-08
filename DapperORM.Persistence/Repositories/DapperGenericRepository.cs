@@ -3,6 +3,7 @@ using DapperORM.Application.Interfaces.DapperContext;
 using DapperORM.Application.Interfaces.Repositories;
 using DapperORM.Domain.Common;
 using System.Reflection;
+using static Dapper.SqlMapper;
 
 
 namespace DapperORM.Persistence.Repositories
@@ -39,6 +40,8 @@ namespace DapperORM.Persistence.Repositories
             });
 
         }
+
+   
 
         public void Delete(T entity)
         {

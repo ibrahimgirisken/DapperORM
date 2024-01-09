@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DapperORM.Application.Features.Commands.CategoryCommands.CreateCategory;
-using DapperORM.Application.Features.Commands.ProductCommands.CreateProduct;
 using DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategory;
 using DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct;
 using DapperORM.Application.Features.Commands.CategoryCommands.UpdateCategory;
@@ -14,6 +13,7 @@ using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
 using Microsoft.AspNetCore.Identity;
 using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
 using DapperORM.Application.DTOs;
+using DapperORM.Application.Features.Commands.ProductCommands.CreateProduct;
 
 namespace DapperORM.Application.MappingConfiguration
 {
@@ -28,11 +28,9 @@ namespace DapperORM.Application.MappingConfiguration
             CreateMap<Category, UpdateCategoryCommandRequest>().ReverseMap();
             CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
             CreateMap<IdentityUser,CreateUserCommandRequest>().ReverseMap();
-            CreateMap<ProductDto, Product>().ForMember(dest => dest.Id, opt => opt.Ignore()) // Haritalama sırasında Id özelliğini yoksay
-      .ForMember(dest => dest.CreatedDate, opt => opt.Ignore()) // CreatedDate özelliğini yoksay
-      .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore()) // UpdatedDate özelliğini yoksay
-      .ReverseMap();
-            CreateMap<ProductTranslationDto,ProductTranslation>().ReverseMap();
+            CreateMap<Product, CreateProductCommandHandler>().ReverseMap();
+            CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<ProductTranslation, ProductTranslationDto>().ReverseMap();
 
             //Queries
             CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();

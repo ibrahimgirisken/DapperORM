@@ -18,6 +18,5 @@ namespace DapperORM.Domain.Entities
         public string MetaDescription { get; set; }
         public string MetaKeywords { get; set; }
         public string LanguageCode { get; set; }
-        public Product Product { get; set; }
     }
 }

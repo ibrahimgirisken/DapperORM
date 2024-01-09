@@ -10,6 +10,6 @@ namespace DapperORM.Application.DTOs
     public class ProductDto
     {
         public int CategoryId { get; set; }
-        public List<ProductTranslationDto> ProductTranslations { get; set; }
+        public List<ProductTranslationDto> ProductTranslations { get; set; } = new();
     }
 }

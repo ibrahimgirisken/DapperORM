@@ -13,6 +13,7 @@ using DapperORM.Domain.Entities;
 using DapperORM.Application.Features.Commands.AppUserCommands.LoginUser;
 using Microsoft.AspNetCore.Identity;
 using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
+using DapperORM.Application.DTOs;
 
 namespace DapperORM.Application.MappingConfiguration
 {
@@ -21,13 +22,17 @@ namespace DapperORM.Application.MappingConfiguration
         public GeneralProfile()
         {
             //Command
-            CreateMap<Product, CreateProductCommandRequest>().ReverseMap();
             CreateMap<Product, RemoveProductCommandRequest>().ReverseMap();
             CreateMap<Product, UpdateProductCommandRequest>().ReverseMap();
             CreateMap<Category, CreateCategoryCommandRequest>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommandRequest>().ReverseMap();
             CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
             CreateMap<IdentityUser,CreateUserCommandRequest>().ReverseMap();
+            CreateMap<ProductDto, Product>().ForMember(dest => dest.Id, opt => opt.Ignore()) // Haritalama sırasında Id özelliğini yoksay
+      .ForMember(dest => dest.CreatedDate, opt => opt.Ignore()) // CreatedDate özelliğini yoksay
+      .ForMember(dest => dest.UpdatedDate, opt => opt.Ignore()) // UpdatedDate özelliğini yoksay
+      .ReverseMap();
+            CreateMap<ProductTranslationDto,ProductTranslation>().ReverseMap();
 
             //Queries
             CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();

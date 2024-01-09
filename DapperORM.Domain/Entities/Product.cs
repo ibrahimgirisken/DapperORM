@@ -11,11 +11,15 @@ namespace DapperORM.Domain.Entities
 {
     public class Product:IBaseEntity
     {
+        public Product()
+        {
+            ProductTranslations = new HashSet<ProductTranslation>();
+        }
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
         public int CategoryId { get; set; }
-        public List<ProductTranslation> ProductTranslations { get; set; } = new();
+        public ICollection<ProductTranslation> ProductTranslations { get; set; }
 
     }
 }

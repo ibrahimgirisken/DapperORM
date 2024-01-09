@@ -64,7 +64,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
-        public async Task<IActionResult> Create([FromQuery] CreateProductCommandRequest request)
+        public async Task<IActionResult> Create([FromBody] CreateProductCommandRequest request)
         {
             var result = await _mediator.Send(request);
             if (result.IsSuccess == false)

@@ -3,6 +3,7 @@ using DapperORM.Application.Interfaces.DapperContext;
 using DapperORM.Application.Interfaces.Repositories;
 using DapperORM.Domain.Common;
 using System.Reflection;
+using static Dapper.SqlMapper;
 
 
 namespace DapperORM.Persistence.Repositories
@@ -94,5 +95,17 @@ namespace DapperORM.Persistence.Repositories
             });
         }
 
+        public void AddRelated(Object type)
+        {
+            var columns = GetColumns();
+            var stringOfColumns = string.Join(",", columns);
+            var stringOfParameters = string.Join(",", columns.Select(e => "@" + e));
+            var query = $"insert into {_tableName} ({stringOfColumns}) values ({stringOfParameters})";
+
+            _dapperContext.Execute((conn) =>
+            {
+                conn.Execute(query, type);
+            });
+        }
     }
 }

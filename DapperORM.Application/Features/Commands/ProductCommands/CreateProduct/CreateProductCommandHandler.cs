@@ -24,11 +24,11 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
         public  Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
                 Product product = _mapper.Map<Product>(request);
+        
+            _productRepository.Add(product);
+          
                 return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added));
             
-  
-
-
         }
     }
 }

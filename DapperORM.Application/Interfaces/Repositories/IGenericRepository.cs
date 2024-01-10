@@ -14,6 +14,7 @@ namespace DapperORM.Application.Interfaces.Repositories
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
+        void AddRelated(Object type);
         List<T> GetAll();
     }
 }

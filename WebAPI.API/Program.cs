@@ -58,7 +58,6 @@ internal class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddScoped<RequestLocalizationCookiesMiddleware>();
-
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer("Admin", options =>
             {

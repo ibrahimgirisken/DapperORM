@@ -11,7 +11,7 @@ namespace DapperORM.Application.Interfaces.Repositories
     {
         T Get(int id);
         T GetByColumnName(string columnName,string columnValue);
-        void Add(T entity);
+        int Add(T entity);
         void Update(T entity);
         void Delete(T entity);
         void AddRelated(Object Tentity, string tableName);

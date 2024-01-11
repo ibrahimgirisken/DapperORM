@@ -16,6 +16,7 @@ namespace DapperORM.Persistence
         public static void AddPersistenceDependencies(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, DapperProductRepository>();
+            services.AddScoped<IProductTranslationRepository,DapperProductTranslationRepository>();
             services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
             services.AddScoped<IDapperContext, DapperContext>();
          }

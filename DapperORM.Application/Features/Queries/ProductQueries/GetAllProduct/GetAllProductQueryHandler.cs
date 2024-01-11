@@ -23,7 +23,7 @@ namespace DapperORM.Application.Features.Queries.ProductQuesries.GetAllProduct
         public Task<IDataResult<List<Product>>> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
         {
             var result = _productRepository.GetAll();
-            return Task.FromResult<IDataResult<List<Product>>>(new SuccessDataResult<List<DapperORM.Domain.Entities.Product>>(result));
+            return Task.FromResult<IDataResult<List<Product>>>(new SuccessDataResult<List<Product>>(result));
         }
     }
 }

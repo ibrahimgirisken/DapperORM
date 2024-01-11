@@ -49,18 +49,20 @@ namespace DapperORM.Persistence.Repositories
                 .Select(p => p.Name);
         }
 
-        public void Add(T entity)
+        public int Add(T entity)
         {
             var columns = GetColumns();
             var stringOfColumns = string.Join(",", columns);
             var stringOfParameters = string.Join(",", columns.Select(e => "@" + e));
-            var query = $"insert into {_tableName} ({stringOfColumns}) values ({stringOfParameters})";
+            var query = $"insert into {_tableName} ({stringOfColumns}) OUTPUT INSERTED.Id values ({stringOfParameters})";
 
+            int insertedId = 0;
             _dapperContext.Execute((conn) =>
             {
-                conn.Execute(query, entity);
+                insertedId = conn.ExecuteScalar<int>(query, entity);
             });
 
+            return insertedId;
         }
         public void Delete(T entity)
         {

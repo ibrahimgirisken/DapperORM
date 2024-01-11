@@ -1,4 +1,5 @@
-﻿using DapperORM.Application.Features.Queries.ProductQueries.GetAllProduct;
+﻿using AutoMapper;
+using DapperORM.Application.Features.Queries.ProductQueries.GetAllProduct;
 using DapperORM.Application.Interfaces.Repositories;
 using DapperORM.Domain.Common.Result;
 using DapperORM.Domain.Entities;
@@ -22,8 +23,8 @@ namespace DapperORM.Application.Features.Queries.ProductQuesries.GetAllProduct
 
         public Task<IDataResult<List<Product>>> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
         {
-            var result = _productRepository.GetAll();
-            return Task.FromResult<IDataResult<List<Product>>>(new SuccessDataResult<List<Product>>(result));
+            List<Product> products = _productRepository.GetAll();
+            return Task.FromResult<IDataResult<List<Product>>>(new SuccessDataResult<List<Product>>(products));
         }
     }
 }

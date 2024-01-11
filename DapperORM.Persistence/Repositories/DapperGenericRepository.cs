@@ -8,7 +8,7 @@ using static Dapper.SqlMapper;
 
 namespace DapperORM.Persistence.Repositories
 {
-    public abstract class DapperGenericRepository<T>:IGenericRepository<T> where T:IBaseEntity
+    public abstract class DapperGenericRepository<T> : IGenericRepository<T> where T : IBaseEntity
     {
         public IDapperContext _dapperContext;
         private string _tableName;
@@ -22,11 +22,33 @@ namespace DapperORM.Persistence.Repositories
         {
             return typeof(T)
                 .GetProperties()
-                .Where(e=>e.Name!="Id"
+                .Where(e => e.Name != "Id"
                 && !e.PropertyType.GetTypeInfo().IsGenericType
-                && !Attribute.IsDefined(e,typeof(DapperIgnoreAttribute)))
-                .Select(e=>e.Name);
+                && !Attribute.IsDefined(e, typeof(DapperIgnoreAttribute)))
+                .Select(e => e.Name);
         }
+
+        private IEnumerable<string> GetColumns(object data)
+        {
+            // Ensure non-null data object
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            // Retrieve properties using reflection
+            return data.GetType()
+                .GetProperties()
+                .Where(p =>
+                {
+                    return p.CanRead &&
+                           !p.PropertyType.GetTypeInfo().IsGenericType &&
+                           !Attribute.IsDefined(p, typeof(DapperIgnoreAttribute)) &&
+                           p.Name != "Id";
+                })
+                .Select(p => p.Name);
+        }
+
         public void Add(T entity)
         {
             var columns = GetColumns();
@@ -52,16 +74,16 @@ namespace DapperORM.Persistence.Repositories
 
         public T Get(int id)
         {
-     
+
             var query = $"select * from {_tableName} where Id = @Id ";
 
-            using (var conn=_dapperContext.GetConnection())
+            using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return conn.QueryFirst<T>(query,new {Id=id});
+                return conn.QueryFirst<T>(query, new { Id = id });
             }
         }
-        public T GetByColumnName(string columnName,string columnValue)
+        public T GetByColumnName(string columnName, string columnValue)
         {
             var query = $"select * from {_tableName} where {columnName} = @columnValue";
 
@@ -76,10 +98,10 @@ namespace DapperORM.Persistence.Repositories
         {
             var query = $"select * from {_tableName}";
 
-            using (var conn=_dapperContext.GetConnection())
+            using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return (List<T>) conn.Query<T>(query);
+                return (List<T>)conn.Query<T>(query);
             }
         }
 
@@ -95,16 +117,16 @@ namespace DapperORM.Persistence.Repositories
             });
         }
 
-        public void AddRelated(Object type)
+        public void AddRelated(object data, string tableName)
         {
-            var columns = GetColumns();
-            var stringOfColumns = string.Join(",", columns);
-            var stringOfParameters = string.Join(",", columns.Select(e => "@" + e));
-            var query = $"insert into {_tableName} ({stringOfColumns}) values ({stringOfParameters})";
+            var columnNames = GetColumns(data);
+            var columnParameters = columnNames.Select(e => "@" + e).ToArray();
+
+            var query = $"insert into {tableName} ({string.Join(",", columnNames)}) values ({string.Join(",", columnParameters)})";
 
             _dapperContext.Execute((conn) =>
             {
-                conn.Execute(query, type);
+                conn.Execute(query, data);
             });
         }
     }

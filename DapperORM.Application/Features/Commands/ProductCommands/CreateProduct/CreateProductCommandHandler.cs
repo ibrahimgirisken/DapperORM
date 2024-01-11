@@ -23,9 +23,13 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
 
         public  Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
-                Product product = _mapper.Map<Product>(request);
-        
+            Product product = _mapper.Map<Product>(request);
             _productRepository.Add(product);
+            foreach (var item in request.Product.ProductTranslations)
+            {
+                item.ProductId = product.Id;
+                _productRepository.AddRelated(item, "ProductTranslations");
+            }
           
                 return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added));
             

@@ -19,10 +19,10 @@ namespace DapperORM.Application.Features.Queries.CategoryQueries.GetAllCategory
             _categoryRepository = categoryRepository;
         }
 
-        public Task<IDataResult<List<Category>>> Handle(GetAllCategoryQueryRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult<List<Category>>> Handle(GetAllCategoryQueryRequest request, CancellationToken cancellationToken)
         {
-            var result= _categoryRepository.GetAll();
-            return Task.FromResult<IDataResult<List<Category>>>(new SuccessDataResult<List<Category>>(result));
+            var result= await _categoryRepository.GetAll();
+            return await Task.FromResult<IDataResult<List<Category>>>(new SuccessDataResult<List<Category>>(result));
         }
     }
 }

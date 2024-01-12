@@ -14,10 +14,10 @@ namespace DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct
             _productRepository = productRepository;
         }
 
-        public Task<IDataResult<Product>> Handle(GetByIdProductQueryRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult<Product>> Handle(GetByIdProductQueryRequest request, CancellationToken cancellationToken)
         {
-            var result = _productRepository.Get(request.Id);
-            return Task.FromResult<IDataResult<Product>>(new SuccessDataResult<Product>(result));
+            var result = await _productRepository.Get(request.Id);
+            return await Task.FromResult<IDataResult<Product>>(new SuccessDataResult<Product>(result));
         }
     }
 }

@@ -19,10 +19,10 @@ namespace DapperORM.Application.Features.Queries.CategoryQueries.GetByIdCategory
             _categoryRepository = categoryRepository;
         }
 
-        public Task<IDataResult<Category>> Handle(GetByIdCategoryQueryRequest request, CancellationToken cancellationToken)
+        public async Task<IDataResult<Category>> Handle(GetByIdCategoryQueryRequest request, CancellationToken cancellationToken)
         {
-            var result = _categoryRepository.Get(request.Id);
-            return Task.FromResult<IDataResult<Category>>(new SuccessDataResult<Category>(result));
+            var result = await _categoryRepository.Get(request.Id);
+            return await Task.FromResult<IDataResult<Category>>(new SuccessDataResult<Category>(result));
         }
     }
 }

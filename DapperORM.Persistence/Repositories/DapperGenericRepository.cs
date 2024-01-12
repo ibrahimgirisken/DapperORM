@@ -49,7 +49,7 @@ namespace DapperORM.Persistence.Repositories
                 .Select(p => p.Name);
         }
 
-        public int Add(T entity)
+        public async Task<int> Add(T entity)
         {
             var columns = GetColumns();
             var stringOfColumns = string.Join(",", columns);
@@ -57,24 +57,24 @@ namespace DapperORM.Persistence.Repositories
             var query = $"insert into {_tableName} ({stringOfColumns}) OUTPUT INSERTED.Id values ({stringOfParameters})";
 
             int insertedId = 0;
-            _dapperContext.Execute((conn) =>
+            _dapperContext.Execute(async (conn) =>
             {
-                insertedId = conn.ExecuteScalar<int>(query, entity);
+                insertedId =await conn.ExecuteScalarAsync<int>(query, entity);
             });
 
-            return insertedId;
+            return  insertedId;
         }
-        public void Delete(T entity)
+        public async Task Delete(T entity)
         {
             var query = $"delete from {_tableName} where Id=@Id";
 
             _dapperContext.Execute((conn) =>
             {
-                conn.Execute(query, entity);
+                conn.ExecuteAsync(query, entity);
             });
         }
 
-        public T Get(int id)
+        public Task<T> Get(int id)
         {
 
             var query = $"select * from {_tableName} where Id = @Id ";
@@ -82,32 +82,33 @@ namespace DapperORM.Persistence.Repositories
             using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return conn.QueryFirst<T>(query, new { Id = id });
+                return conn.QueryFirstAsync<T>(query, new { Id = id });
             }
         }
-        public T GetByColumnName(string columnName, string columnValue)
+        public Task<T> GetByColumnName(string columnName, string columnValue)
         {
             var query = $"select * from {_tableName} where {columnName} = @columnValue";
 
             using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return conn.QueryFirst<T>(query, new { columnName = columnValue });
+                return conn.QueryFirstAsync<T>(query, new { columnName = columnValue });
             }
         }
 
-        public List<T> GetAll()
+        public async Task<List<T>> GetAll()
         {
             var query = $"select * from {_tableName}";
 
             using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return (List<T>)conn.Query<T>(query);
+                var result=await conn.QueryAsync<T>(query);
+                return result.ToList();
             }
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
             var columns = GetColumns();
             var stringOfColumns = string.Join(",", columns.Select(e => $"{e}=@{e}"));
@@ -115,11 +116,11 @@ namespace DapperORM.Persistence.Repositories
 
             _dapperContext.Execute((conn) =>
             {
-                conn.Execute(query, entity);
+                conn.ExecuteAsync(query, entity);
             });
         }
 
-        public void AddRelated(object data, string tableName)
+        public async Task AddRelated(object data, string tableName)
         {
             var columnNames = GetColumns(data);
             var columnParameters = columnNames.Select(e => "@" + e).ToArray();
@@ -128,8 +129,13 @@ namespace DapperORM.Persistence.Repositories
 
             _dapperContext.Execute((conn) =>
             {
-                conn.Execute(query, data);
+                conn.ExecuteAsync(query, data);
             });
+        }
+
+        public Task<T> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

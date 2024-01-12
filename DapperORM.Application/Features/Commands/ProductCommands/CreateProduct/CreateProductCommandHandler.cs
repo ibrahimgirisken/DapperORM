@@ -23,17 +23,17 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
             _createProductValidator = createProductValidator;
         }
 
-        public  Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public  async Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = _mapper.Map<Product>(request);
-            int response= _productRepository.Add(product);
+            int response= await _productRepository.Add(product);
             foreach (var item in request.Product.ProductTranslations)
             {
                 ProductTranslation productTranslation = _mapper.Map<ProductTranslation>(item);
                 productTranslation.ProductId = response;
                 _productTranslationRepository.Add(productTranslation);
             }      
-                return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added)); 
+                return await Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added)); 
         }
     }
 }

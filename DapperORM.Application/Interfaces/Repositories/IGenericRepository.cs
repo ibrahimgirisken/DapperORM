@@ -9,12 +9,13 @@ namespace DapperORM.Application.Interfaces.Repositories
 {
     public interface IGenericRepository<T> where T : IBaseEntity
     {
-        T Get(int id);
-        T GetByColumnName(string columnName,string columnValue);
-        int Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        void AddRelated(Object Tentity, string tableName);
-        List<T> GetAll();
+        Task<T> Get(int id);
+        Task<T> GetByColumnName(string columnName,string columnValue);
+        Task<int> Add(T entity);
+        Task Update(T entity);
+        Task Delete(T entity);
+        Task AddRelated(Object Tentity, string tableName);
+        Task<List<T>> GetAll();
+        Task<T> GetByIdAsync(int id);
     }
 }

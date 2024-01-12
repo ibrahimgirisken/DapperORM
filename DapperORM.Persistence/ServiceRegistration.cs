@@ -18,7 +18,6 @@ namespace DapperORM.Persistence
             services.AddScoped<IProductTranslationRepository,DapperProductTranslationRepository>();
             services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
             services.AddScoped<IDapperContext, DapperContext>();
-            services.AddScoped<IProductTranslationService,ProductTranslationService>();
         }
     }
 }

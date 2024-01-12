@@ -10,7 +10,7 @@ namespace DapperORM.Application.Interfaces.Services
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
-        Task AddAsync(T entity, IEnumerable<TTranslation> translations);
+        Task AddAsync(T entity);
         Task UpdateAsync(T entity, IEnumerable<TTranslation> translations);
         Task DeleteAsync(int id);
     }

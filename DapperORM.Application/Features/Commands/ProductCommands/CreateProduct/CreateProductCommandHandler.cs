@@ -31,15 +31,15 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
             var result = _createProductValidator.Validate(product);
             if (result.Errors.Any())
             {
+                return await Task.FromResult<IDataResult>(new ErrorResult(ResultMessages.Product_AddedError));
+            }
              foreach (var item in request.Product.ProductTranslations)
             {
                 ProductTranslation productTranslation =_mapper.Map<ProductTranslation>(item);
                 translations.Add(productTranslation);
-            }      
-               await _productTranslationService.AddAsync(product, translations);
             }
-            
-                return await Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added)); 
+            await _productTranslationService.AddAsync(product);
+              return await Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added)); 
         }
     }
 }

@@ -26,12 +26,12 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
         public  async Task<IDataResult> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = _mapper.Map<Product>(request);
-            int response= await _productRepository.Add(product);
+            int response= await _productRepository.AddAsync(product);
             foreach (var item in request.Product.ProductTranslations)
             {
                 ProductTranslation productTranslation = _mapper.Map<ProductTranslation>(item);
                 productTranslation.ProductId = response;
-                _productTranslationRepository.Add(productTranslation);
+                _productTranslationRepository.AddAsync(productTranslation);
             }      
                 return await Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added)); 
         }

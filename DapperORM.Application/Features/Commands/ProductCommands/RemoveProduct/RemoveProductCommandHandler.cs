@@ -26,7 +26,7 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.RemoveProduct
         public Task<IDataResult> Handle(RemoveProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = _mapper.Map<Product>(request);
-            _productRepository.Delete(product);
+            _productRepository.DeleteAsync(product);
             return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Deleted));
         }
     }

@@ -28,7 +28,7 @@ namespace DapperORM.Application.Features.Commands.CategoryCommands.RemoveCategor
         public Task<IDataResult> Handle(RemoveCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             Category category = _mapper.Map<Category>(request);
-            _categoryRepository.Delete(category);
+            _categoryRepository.DeleteAsync(category);
             return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Category_Deleted));
         }
     }

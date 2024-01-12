@@ -16,7 +16,7 @@ namespace DapperORM.Application.Features.Queries.ProductQueries.GetByIdProduct
 
         public async Task<IDataResult<Product>> Handle(GetByIdProductQueryRequest request, CancellationToken cancellationToken)
         {
-            var result = await _productRepository.Get(request.Id);
+            var result = await _productRepository.GetByIdAsync(request.Id);
             return await Task.FromResult<IDataResult<Product>>(new SuccessDataResult<Product>(result));
         }
     }

@@ -21,7 +21,7 @@ namespace DapperORM.Application.Features.Queries.CategoryQueries.GetByIdCategory
 
         public async Task<IDataResult<Category>> Handle(GetByIdCategoryQueryRequest request, CancellationToken cancellationToken)
         {
-            var result = await _categoryRepository.Get(request.Id);
+            var result = await _categoryRepository.GetByIdAsync(request.Id);
             return await Task.FromResult<IDataResult<Category>>(new SuccessDataResult<Category>(result));
         }
     }

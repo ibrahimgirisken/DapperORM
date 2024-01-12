@@ -29,7 +29,7 @@ namespace DapperORM.Application.Features.Commands.CategoryCommands.CreateCategor
             {
                 return Task.FromResult<IDataResult>(new ErrorResult(result.Errors.First().ErrorMessage));
             }
-            _categoryRepository.Add(category);
+            _categoryRepository.AddAsync(category);
             return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Category_Added));
         }
     }

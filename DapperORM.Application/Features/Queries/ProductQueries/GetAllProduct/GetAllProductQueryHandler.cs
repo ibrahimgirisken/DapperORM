@@ -23,7 +23,7 @@ namespace DapperORM.Application.Features.Queries.ProductQuesries.GetAllProduct
 
         public async Task<IDataResult<List<Product>>> Handle(GetAllProductQueryRequest request, CancellationToken cancellationToken)
         {
-            List<Product> products = await _productRepository.GetAll();
+            List<Product> products = await _productRepository.GetAllAsync();
             return await Task.FromResult<IDataResult<List<Product>>>(new SuccessDataResult<List<Product>>(products));
         }
     }

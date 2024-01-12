@@ -49,7 +49,7 @@ namespace DapperORM.Persistence.Repositories
                 .Select(p => p.Name);
         }
 
-        public async Task<int> Add(T entity)
+        public async Task<int> AddAsync(T entity)
         {
             var columns = GetColumns();
             var stringOfColumns = string.Join(",", columns);
@@ -64,7 +64,7 @@ namespace DapperORM.Persistence.Repositories
 
             return  insertedId;
         }
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             var query = $"delete from {_tableName} where Id=@Id";
 
@@ -74,7 +74,7 @@ namespace DapperORM.Persistence.Repositories
             });
         }
 
-        public Task<T> Get(int id)
+        public Task<T> GetByIdAsync(int id)
         {
 
             var query = $"select * from {_tableName} where Id = @Id ";
@@ -85,7 +85,7 @@ namespace DapperORM.Persistence.Repositories
                 return conn.QueryFirstAsync<T>(query, new { Id = id });
             }
         }
-        public Task<T> GetByColumnName(string columnName, string columnValue)
+        public Task<T> GetByColumnNameAsync(string columnName, string columnValue)
         {
             var query = $"select * from {_tableName} where {columnName} = @columnValue";
 
@@ -96,7 +96,7 @@ namespace DapperORM.Persistence.Repositories
             }
         }
 
-        public async Task<List<T>> GetAll()
+        public async Task<List<T>> GetAllAsync()
         {
             var query = $"select * from {_tableName}";
 
@@ -108,7 +108,7 @@ namespace DapperORM.Persistence.Repositories
             }
         }
 
-        public async Task Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             var columns = GetColumns();
             var stringOfColumns = string.Join(",", columns.Select(e => $"{e}=@{e}"));
@@ -120,7 +120,7 @@ namespace DapperORM.Persistence.Repositories
             });
         }
 
-        public async Task AddRelated(object data, string tableName)
+        public async Task AddRelatedAsync(object data, string tableName)
         {
             var columnNames = GetColumns(data);
             var columnParameters = columnNames.Select(e => "@" + e).ToArray();
@@ -133,9 +133,5 @@ namespace DapperORM.Persistence.Repositories
             });
         }
 
-        public Task<T> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -26,7 +26,7 @@ namespace DapperORM.Application.Features.Commands.CategoryCommands.UpdateCategor
         public Task<IDataResult> Handle(UpdateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             Category category = _mapper.Map<Category>(request);
-            _categoryRepository.Update(category);
+            _categoryRepository.UpdateAsync(category);
             return Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Category_Updated));
         }
     }

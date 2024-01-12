@@ -22,7 +22,7 @@ namespace DapperORM.Persistence.Services
 
         public async Task AddAsync(T entity, IEnumerable<TTranslation> translations)
         {
-            await _repository.Add(entity);
+            await _repository.AddAsync(entity);
             // Additional logic for adding translations if needed
         }
 
@@ -31,14 +31,14 @@ namespace DapperORM.Persistence.Services
             var entityToDelete = await _repository.GetByIdAsync(id);
             if (entityToDelete != null)
             {
-                await _repository.Delete(entityToDelete);
+                await _repository.DeleteAsync(entityToDelete);
                 // Additional logic for deleting related translations if needed
             }
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await _repository.GetAll();
+            return await _repository.GetAllAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)
@@ -48,7 +48,7 @@ namespace DapperORM.Persistence.Services
 
         public async Task UpdateAsync(T entity, IEnumerable<TTranslation> translations)
         {
-            await _repository.Update(entity);
+            await _repository.UpdateAsync(entity);
             // Additional logic for updating translations if needed
         }
     }

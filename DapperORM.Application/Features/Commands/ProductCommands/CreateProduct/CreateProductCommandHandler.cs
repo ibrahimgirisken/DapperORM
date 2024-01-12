@@ -36,9 +36,9 @@ namespace DapperORM.Application.Features.Commands.ProductCommands.CreateProduct
                 ProductTranslation productTranslation =_mapper.Map<ProductTranslation>(item);
                 translations.Add(productTranslation);
             }      
+               await _productTranslationService.AddAsync(product, translations);
             }
             
-               await _productTranslationService.AddAsync(product, translations);
                 return await Task.FromResult<IDataResult>(new SuccessResult(ResultMessages.Product_Added)); 
         }
     }

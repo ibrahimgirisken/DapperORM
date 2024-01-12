@@ -10,7 +10,7 @@ namespace DapperORM.Application.Interfaces.DapperContext
     public interface IDapperContext
     {
         public SqlConnection GetConnection();
-        public void Execute(Action<SqlConnection> @event);
+        public Task ExecuteAsync(Action<SqlConnection> @event);
 
     }
 }

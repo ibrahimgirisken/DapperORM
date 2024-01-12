@@ -1,13 +1,11 @@
 ﻿using DapperORM.Application.Interfaces.DapperContext;
 using DapperORM.Application.Interfaces.Repositories;
+using DapperORM.Application.Interfaces.Services;
 using DapperORM.Persistence.Context;
 using DapperORM.Persistence.Repositories;
+using DapperORM.Persistence.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DapperORM.Persistence
 {
@@ -19,6 +17,7 @@ namespace DapperORM.Persistence
             services.AddScoped<IProductTranslationRepository,DapperProductTranslationRepository>();
             services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
             services.AddScoped<IDapperContext, DapperContext>();
+            services.AddScoped<IProductTranslationService,ProductTranslationService>();
          }
     }
 }

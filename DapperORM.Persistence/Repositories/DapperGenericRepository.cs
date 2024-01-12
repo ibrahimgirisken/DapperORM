@@ -18,7 +18,7 @@ namespace DapperORM.Persistence.Repositories
             this._dapperContext = dapperContext;
             this._tableName = tableName;
         }
-        private IEnumerable<string> GetColumns()
+        private async Task<IEnumerable<string>> GetColumnsAsync()
         {
             return typeof(T)
                 .GetProperties()
@@ -28,7 +28,7 @@ namespace DapperORM.Persistence.Repositories
                 .Select(e => e.Name);
         }
 
-        private IEnumerable<string> GetColumns(object data)
+        private async Task<IEnumerable<string>> GetColumnsAsync(object data)
         {
             // Ensure non-null data object
             if (data == null)
@@ -51,30 +51,30 @@ namespace DapperORM.Persistence.Repositories
 
         public async Task<int> AddAsync(T entity)
         {
-            var columns = GetColumns();
+            var columns = await GetColumnsAsync();
             var stringOfColumns = string.Join(",", columns);
             var stringOfParameters = string.Join(",", columns.Select(e => "@" + e));
             var query = $"insert into {_tableName} ({stringOfColumns}) OUTPUT INSERTED.Id values ({stringOfParameters})";
 
             int insertedId = 0;
-            _dapperContext.Execute(async (conn) =>
+            await _dapperContext.ExecuteAsync(async (conn) =>
             {
-                insertedId =await conn.ExecuteScalarAsync<int>(query, entity);
+                insertedId =conn.ExecuteScalar<int>(query, entity);
             });
 
-            return  insertedId;
+            return insertedId;
         }
         public async Task DeleteAsync(T entity)
         {
             var query = $"delete from {_tableName} where Id=@Id";
 
-            _dapperContext.Execute((conn) =>
+           await _dapperContext.ExecuteAsync((conn) =>
             {
                 conn.ExecuteAsync(query, entity);
             });
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
 
             var query = $"select * from {_tableName} where Id = @Id ";
@@ -82,17 +82,17 @@ namespace DapperORM.Persistence.Repositories
             using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return conn.QueryFirstAsync<T>(query, new { Id = id });
+                return await conn.QueryFirstAsync<T>(query, new { Id = id });
             }
         }
-        public Task<T> GetByColumnNameAsync(string columnName, string columnValue)
+        public async Task<T> GetByColumnNameAsync(string columnName, string columnValue)
         {
             var query = $"select * from {_tableName} where {columnName} = @columnValue";
 
             using (var conn = _dapperContext.GetConnection())
             {
                 conn.Open();
-                return conn.QueryFirstAsync<T>(query, new { columnName = columnValue });
+                return await conn.QueryFirstAsync<T>(query, new { columnName = columnValue });
             }
         }
 
@@ -110,11 +110,11 @@ namespace DapperORM.Persistence.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            var columns = GetColumns();
+            var columns = await GetColumnsAsync();
             var stringOfColumns = string.Join(",", columns.Select(e => $"{e}=@{e}"));
             var query = $"update {_tableName} set {stringOfColumns} where Id=@Id";
 
-            _dapperContext.Execute((conn) =>
+            await _dapperContext.ExecuteAsync((conn) =>
             {
                 conn.ExecuteAsync(query, entity);
             });
@@ -122,12 +122,12 @@ namespace DapperORM.Persistence.Repositories
 
         public async Task AddRelatedAsync(object data, string tableName)
         {
-            var columnNames = GetColumns(data);
+            var columnNames = await GetColumnsAsync(data);
             var columnParameters = columnNames.Select(e => "@" + e).ToArray();
 
             var query = $"insert into {tableName} ({string.Join(",", columnNames)}) values ({string.Join(",", columnParameters)})";
 
-            _dapperContext.Execute((conn) =>
+            await _dapperContext.ExecuteAsync((conn) =>
             {
                 conn.ExecuteAsync(query, data);
             });

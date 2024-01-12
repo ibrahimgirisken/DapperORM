@@ -18,18 +18,18 @@ namespace DapperORM.Persistence.Context
             this._configuration = configuration;
         }
 
-        public void Execute(Action<SqlConnection> @event)
+        public SqlConnection GetConnection()
         {
-            using (var collection=GetConnection())
+            return new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+        }
+
+        public async Task ExecuteAsync(Action<SqlConnection> @event)
+        {
+            using (var collection = GetConnection())
             {
                 collection.Open();
                 @event(collection);
             }
-        }
-
-        public SqlConnection GetConnection()
-        {
-            return new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
         }
     }
 }

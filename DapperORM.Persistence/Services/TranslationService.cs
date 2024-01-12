@@ -11,7 +11,7 @@ namespace DapperORM.Persistence.Services
 {
     public class TranslationService<T, TTranslation> : ITranslationService<T, TTranslation>
      where T : class,IBaseEntity
-     where TTranslation : class
+     where TTranslation : class,IBaseEntity
     {
         private readonly IGenericRepository<T> _repository;
 

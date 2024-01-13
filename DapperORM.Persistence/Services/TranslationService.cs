@@ -14,16 +14,21 @@ namespace DapperORM.Persistence.Services
      where TTranslation : class,IBaseEntity
     {
         private readonly IGenericRepository<T> _repository;
+        private readonly IGenericRepository<TTranslation> _repositoryTranslation;
 
-        public TranslationService(IGenericRepository<T> repository)
+        public TranslationService(IGenericRepository<T> repository, IGenericRepository<TTranslation> repositoryTranslation)
         {
             _repository = repository;
+            _repositoryTranslation = repositoryTranslation;
         }
 
-        public async Task AddAsync(T entity)
+        public async Task AddAsync(T entity, IEnumerable<TTranslation> translations)
         {
             await _repository.AddAsync(entity);
-
+            foreach (var translation in translations)
+            {
+            await _repositoryTranslation.AddAsync(translation);
+            }
             // Additional logic for adding translations if needed
         }
 

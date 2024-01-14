@@ -1,10 +1,7 @@
 ﻿using DapperORM.Application.Interfaces.DapperContext;
 using DapperORM.Application.Interfaces.Repositories;
-using DapperORM.Application.Interfaces.Services;
-using DapperORM.Domain.Entities;
 using DapperORM.Persistence.Context;
 using DapperORM.Persistence.Repositories;
-using DapperORM.Persistence.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -15,7 +12,7 @@ namespace DapperORM.Persistence
         public static void AddPersistenceDependencies(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, DapperProductRepository>();
-            services.AddScoped<IProductTranslationRepository,DapperProductTranslationRepository>();
+            services.AddScoped<IProductTranslationRepository, DapperProductTranslationRepository>();
             services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
             services.AddScoped<IDapperContext, DapperContext>();
         }

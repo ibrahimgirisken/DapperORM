@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using DapperORM.Application.Features.Commands.AppUserCommands.CreateUser;
 using DapperORM.Application.DTOs;
 using DapperORM.Application.Features.Commands.ProductCommands.CreateProduct;
+using DapperORM.Application.Interfaces.Services;
 
 namespace DapperORM.Application.MappingConfiguration
 {
@@ -27,28 +28,29 @@ namespace DapperORM.Application.MappingConfiguration
             CreateMap<Category, CreateCategoryCommandRequest>().ReverseMap();
             CreateMap<Category, UpdateCategoryCommandRequest>().ReverseMap();
             CreateMap<Category, RemoveCategoryCommandRequest>().ReverseMap();
-            CreateMap<IdentityUser,CreateUserCommandRequest>().ReverseMap();
+            CreateMap<IdentityUser, CreateUserCommandRequest>().ReverseMap();
             CreateMap<Product, ProductDto>();
             CreateMap<ProductDto, Product>();
 
             CreateMap<ProductTranslation, ProductTranslationDto>();
             CreateMap<ProductTranslationDto, ProductTranslation>();
 
-            CreateMap<Product,CreateProductCommandRequest>().ReverseMap();
+            CreateMap<Product, CreateProductCommandRequest>().ReverseMap();
 
-            //CreateMap<ProductTranslation, CreateProductCommandRequest>().ReverseMap();
+            CreateMap<ProductTranslation, CreateProductCommandRequest>().ReverseMap();
 
 
             //Queries
-            CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();
-            CreateMap<Product, GetByIdProductQueryRequest>().ReverseMap();
 
-            
+            CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();
+            CreateMap<Product, GetByIdProductQueryHandler>().ReverseMap();
+
+
             CreateMap<Category, GetByIdCategoryQueryRequest>().ReverseMap();
             CreateMap<Category, GetAllCategoryQueryRequest>().ReverseMap();
 
             CreateMap<IdentityUser, LoginUserCommandRequest>().ReverseMap();
- 
+
         }
     }
 }

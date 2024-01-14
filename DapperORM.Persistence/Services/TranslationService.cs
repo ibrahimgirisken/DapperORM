@@ -1,6 +1,7 @@
 ﻿using DapperORM.Application.Interfaces.Repositories;
 using DapperORM.Application.Interfaces.Services;
 using DapperORM.Domain.Common;
+using DapperORM.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,10 @@ namespace DapperORM.Persistence.Services
         public async Task UpdateAsync(T entity, IEnumerable<TTranslation> translations)
         {
             await _repository.UpdateAsync(entity);
+            foreach (var item in translations)
+            {
+            await _repositoryTranslation.UpdateAsync(item);
+            }
             // Additional logic for updating translations if needed
         }
     }

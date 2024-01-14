@@ -39,7 +39,6 @@ namespace DapperORM.Application.MappingConfiguration
 
             CreateMap<ProductTranslation, CreateProductCommandRequest>().ReverseMap();
 
-
             //Queries
 
             CreateMap<Product, GetAllProductQueryRequest>().ReverseMap();

@@ -6,7 +6,7 @@ namespace DapperORM.Persistence.Services
 {
     public class ProductTranslationService : TranslationService<Product, ProductTranslation>, IProductTranslationService
     {
-        public ProductTranslationService(IGenericRepository<Product> repository) : base(repository,null)
+        public ProductTranslationService(IGenericRepository<Product> repository, IGenericRepository<ProductTranslation> repositoryTranslation) : base(repository, repositoryTranslation)
         {
         }
     }

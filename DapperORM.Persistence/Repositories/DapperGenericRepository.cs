@@ -8,15 +8,15 @@ using static Dapper.SqlMapper;
 
 namespace DapperORM.Persistence.Repositories
 {
-    public abstract class DapperGenericRepository<T> : IGenericRepository<T> where T : IBaseEntity
+    public class DapperGenericRepository<T> : IGenericRepository<T> where T : IBaseEntity
     {
         public IDapperContext _dapperContext;
-        private string _tableName;
+        public string TableName { get; }
 
         protected DapperGenericRepository(IDapperContext dapperContext, string tableName)
         {
             this._dapperContext = dapperContext;
-            this._tableName = tableName;
+            TableName = tableName;
         }
         private async Task<IEnumerable<string>> GetColumnsAsync()
         {
@@ -54,7 +54,7 @@ namespace DapperORM.Persistence.Repositories
             var columns = await GetColumnsAsync();
             var stringOfColumns = string.Join(",", columns);
             var stringOfParameters = string.Join(",", columns.Select(e => "@" + e));
-            var query = $"insert into {_tableName} ({stringOfColumns}) OUTPUT INSERTED.Id values ({stringOfParameters})";
+            var query = $"insert into {TableName} ({stringOfColumns}) OUTPUT INSERTED.Id values ({stringOfParameters})";
 
             int insertedId = 0;
             await _dapperContext.ExecuteAsync(async (conn) =>
@@ -66,7 +66,7 @@ namespace DapperORM.Persistence.Repositories
         }
         public async Task DeleteAsync(T entity)
         {
-            var query = $"delete from {_tableName} where Id=@Id";
+            var query = $"delete from {TableName} where Id=@Id";
 
            await _dapperContext.ExecuteAsync((conn) =>
             {
@@ -77,7 +77,7 @@ namespace DapperORM.Persistence.Repositories
         public async Task<T> GetByIdAsync(int id)
         {
 
-            var query = $"select * from {_tableName} where Id = @Id ";
+            var query = $"select * from {TableName} where Id = @Id ";
 
             using (var conn = _dapperContext.GetConnection())
             {
@@ -87,7 +87,7 @@ namespace DapperORM.Persistence.Repositories
         }
         public async Task<T> GetByColumnNameAsync(string columnName, string columnValue)
         {
-            var query = $"select * from {_tableName} where {columnName} = @columnValue";
+            var query = $"select * from {TableName} where {columnName} = @columnValue";
 
             using (var conn = _dapperContext.GetConnection())
             {
@@ -98,7 +98,7 @@ namespace DapperORM.Persistence.Repositories
 
         public async Task<List<T>> GetAllAsync()
         {
-            var query = $"select * from {_tableName}";
+            var query = $"select * from {TableName}";
 
             using (var conn = _dapperContext.GetConnection())
             {
@@ -112,7 +112,7 @@ namespace DapperORM.Persistence.Repositories
         {
             var columns = await GetColumnsAsync();
             var stringOfColumns = string.Join(",", columns.Select(e => $"{e}=@{e}"));
-            var query = $"update {_tableName} set {stringOfColumns} where Id=@Id";
+            var query = $"update {TableName} set {stringOfColumns} where Id=@Id";
 
             await _dapperContext.ExecuteAsync((conn) =>
             {
@@ -120,12 +120,12 @@ namespace DapperORM.Persistence.Repositories
             });
         }
 
-        public async Task AddRelatedAsync(object data, string tableName)
+        public async Task AddRelatedAsync(object data)
         {
             var columnNames = await GetColumnsAsync(data);
             var columnParameters = columnNames.Select(e => "@" + e).ToArray();
 
-            var query = $"insert into {tableName} ({string.Join(",", columnNames)}) values ({string.Join(",", columnParameters)})";
+            var query = $"insert into {TableName} ({string.Join(",", columnNames)}) values ({string.Join(",", columnParameters)})";
 
             await _dapperContext.ExecuteAsync((conn) =>
             {

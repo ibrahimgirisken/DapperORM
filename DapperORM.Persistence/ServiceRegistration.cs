@@ -20,6 +20,7 @@ namespace DapperORM.Persistence
             services.AddScoped<IProductRepository, DapperProductRepository>();
             services.AddScoped<IProductTranslationRepository, DapperProductTranslationRepository>();
             services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
+            services.AddTransient(typeof(IGenericRepository<>), typeof(DapperGenericRepository<>));
         }
     }
 }

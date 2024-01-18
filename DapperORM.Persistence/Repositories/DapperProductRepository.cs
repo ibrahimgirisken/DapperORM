@@ -1,8 +1,6 @@
 ﻿using Dapper;
-using DapperORM.Application.DTOs;
 using DapperORM.Application.Interfaces.DapperContext;
 using DapperORM.Application.Interfaces.Repositories;
-using DapperORM.Application.Interfaces.Services;
 using DapperORM.Domain.Entities;
 
 namespace DapperORM.Persistence.Repositories

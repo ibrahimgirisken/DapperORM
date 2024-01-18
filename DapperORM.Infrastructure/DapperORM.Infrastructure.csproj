@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DapperORM.Application\DapperORM.Application.csproj" />
+    <ProjectReference Include="..\DapperORM.Persistence\DapperORM.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
